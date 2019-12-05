@@ -1,0 +1,13 @@
+page-actividad {
+    ion-scroll
+    {
+        white-space: nowrap;
+        height: 50px;
+    }
+    .flex-align-inline
+    {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

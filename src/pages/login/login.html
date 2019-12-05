@@ -1,0 +1,295 @@
+<ion-header>
+  <ion-navbar class="ion-navbar-principal">
+    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<!-- <ion-content padding> -->
+  <ion-content padding>
+  <form (submit)="doLogin()">
+    <ion-list>
+      <ion-item no-padding>
+        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
+        <ion-input type="email" [(ngModel)]="account.correo" name="email"></ion-input>
+      </ion-item>
+      <!--
+      Want to use a Username instead of an Email? Here you go:
+
+      <ion-item>
+        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+      </ion-item>
+      -->
+      <ion-item no-padding>
+        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>        
+      </ion-item>
+      <ion-item no-padding>
+        <button ion-button full right type="button" clear>{{ 'BTN_OLVIDASTE_PW' | translate}}</button>
+      </ion-item>
+
+      <div>
+        <button ion-button full color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
+      </div>      
+    </ion-list>
+    
+  </form>
+
+
+  <!-- PRUEBAS  -->
+ <!-- PRUEBA FLEXBOX -->
+
+ <!-- PRUEBA ALERTS -->
+ <!-- <button ion-button (click)="errorAlert()" >Alert de error</button>
+ <button (click)="confirAlert()" >Alert de confirmacion</button> -->
+ <button (click)="infoAlert()" >Alert de información</button>
+
+  <form>
+
+    
+      <ion-list>
+            <div class="flex-align-inline" no-padding>
+                <ion-item no-padding>  
+                            <ion-label   floating>ZYD{{'TIEMPO_INICIO' | translate}}</ion-label>
+                            <ion-datetime   displayFormat="HH:mm" minuteValues="0,15,30,45"  name="horaInicioR"></ion-datetime>                            
+                </ion-item>
+                <ion-item no-padding >
+                        <ion-label  floating center>ZYD{{'TIEMPO_FIN' | translate}}</ion-label>
+                        <ion-datetime  displayFormat="HH:mm" minuteValues="0,15,30,45"  name="horaFinR"></ion-datetime>            
+                    
+                </ion-item>
+            </div>                    
+                                
+          <ion-item no-padding>
+              <ion-label fixed>
+                  Tipo:(Proyecto/Común)
+              </ion-label>
+              <ion-toggle  name="toogleTipo">                
+              </ion-toggle>
+          </ion-item>
+          <!--  -->
+          <ion-item>
+              <ion-label>Proyecto-Contenido</ion-label>
+              
+              <ion-select>
+                  <ion-option>Pro1</ion-option>                                                          
+              </ion-select>
+              <ion-select>
+                  <ion-option>Pro1</ion-option>                                                          
+              </ion-select>
+        </ion-item>
+        <!--  -->
+
+        
+           <!--  -->
+        <div no-padding margin-top class="separador"></div>    
+          <ion-item no-padding>
+              <ion-label fixed>Tiempo Inicio</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" minuteValues="0,15,30,45"  name="tiempoinicio"></ion-datetime>
+          </ion-item>
+          <ion-item no-padding>
+              <ion-label>Tiempo Final</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY HH:mm" minuteValues="0,15,30,45"   name="tiempofin"></ion-datetime>
+          </ion-item>  
+           <!--  -->
+          <div no-padding margin-top class="separador"></div>       
+          <ion-item no-padding>
+              <ion-item no-padding>Estado inicial: <ion-badge class="bgAqua" [ngStyle]="{'background-color':indicadorEstado}">item.value</ion-badge></ion-item>                    
+              <ion-scroll scrollX="true">                  
+                  <ion-badge (click)="selectEstado(item)" *ngFor="let item of colorList"  [ngStyle]="{'background-color':item[item.estado]}">{{item.value}}</ion-badge>                                         
+                </ion-scroll>                    
+          </ion-item>
+          <!--  -->
+          <div no-padding margin-top class="separador"></div>
+          <ion-item no-padding>Esfuerzo necesario: <ion-badge class="bgAqua" color="primary">5</ion-badge></ion-item>          
+          <ion-item no-padding>              
+              <ion-range min="0" max="100" color="secondary" name="peso">
+                  <ion-label range-left>0</ion-label>
+                  <ion-label range-right>100%</ion-label>
+              </ion-range>                    
+          </ion-item>
+
+          <ion-item no-padding>
+
+                  <ion-label>Categoria:</ion-label>
+                  <ion-select item-left  name="idcategoria">
+                      <ion-option >Hola mundo</ion-option>                     
+                  </ion-select>                  
+                  <button ion-button item-right >+ Categoria</button>                                  
+          </ion-item> 
+          <ion-item >
+              <button ion-button item-right >Nueva Categoria</button>                                  
+          </ion-item>
+      </ion-list>
+  </form>
+  
+  <!-- AGENDA ITEMS -->
+  <div class="flex-container">
+               <!-- ITEM DE REPETICION -->                                      
+               <ion-slides effect=flip  class="slides-agenda-item">
+                  <!-- SLIDE 1 -->
+                  <ion-slide >
+                      
+                      <ion-card no-margin style="border-bottom:5px solid violet;">
+                          <ion-card-header style="background:violet;">
+                            <ion-card-title text-wrap>Actividad 1</ion-card-title>
+                          </ion-card-header>
+                          <ion-card-content no-padding>                            
+                                  <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                  <div>
+                                      <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                          <div class="fecha-desc-agenda"  text-center>08/08</div>
+                                          <div class="fecha-desc-agenda" text-center>2018</div>
+                                          <div class="fecha-desc-agenda"  text-center>13:00pm</div>
+                                      </ion-badge>                            
+                                      <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                      <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                          <div class="fecha-desc-agenda"  text-center>08/08</div>
+                                          <div class="fecha-desc-agenda" text-center>2018</div>
+                                          <div class="fecha-desc-agenda"  text-center>13:00pm</div>
+                                      </ion-badge>
+                                  </div>                                
+                             hola 
+                          </ion-card-content>
+                      </ion-card>                                                                                                                              
+                  </ion-slide>
+                  <!-- SLIDE 2 -->
+                  <ion-slide style="background:violet;"> 
+                      <ion-card>
+                          <ion-list radio-group>
+                              <ion-item class="item-radio-agenda">
+                                <ion-label class="opt-agenda-item">No inicia</ion-label>
+                                <ion-radio value="noinicia"></ion-radio>
+                              </ion-item>
+                              <ion-item class="item-radio-agenda">
+                                <ion-label class="opt-agenda-item">En progreso</ion-label>
+                                <ion-radio value="enprogreso" ></ion-radio>
+                              </ion-item >
+                              <ion-item class="item-radio-agenda">
+                                <ion-label class="opt-agenda-item">Pendiente</ion-label>
+                                <ion-radio value="pendiente"></ion-radio>
+                              </ion-item>
+                              <ion-item class="item-radio-agenda">
+                                <ion-label class="opt-agenda-item">Completado</ion-label>
+                                <ion-radio value="completada"></ion-radio>
+                              </ion-item>
+                              <ion-item class="item-radio-agenda">
+                                <ion-label class="opt-agenda-item">Cancelado</ion-label>
+                                <ion-radio value="cancelada"></ion-radio>
+                              </ion-item>
+                          </ion-list>
+                                <button ion-button type="button" >
+                                  Eliminar                        
+                                </button>                                                          
+                      </ion-card> 
+                  </ion-slide>
+              </ion-slides>                   
+
+  </div>
+    
+
+  <!-- AGENDA ITEMS -->
+
+
+  <!-- LIST ITEMS -->
+  <ion-list no-lines>
+    <!-- ITEM PROYECTO -->
+    <ion-item-sliding>      
+      <ion-item color="primary" no-padding  class="barra-izq-proyecto">
+          <!-- CONTENIDO DEL ITEM -->
+          <!-- style => color de etiqueta de proyecto -->
+          <ion-item class="item-indicador" no-margin item-start style="background-color: blueviolet;">
+            <!-- Prioridad del proyecto -->
+            <h1 text-center>5</h1>
+          </ion-item>
+          <h6>Proyecto 1</h6>
+          
+          <p class="parrafo-descripcion">Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, esse?</p>
+          <p class="parrafo-descripcion"> Categoría: Categoria 1</p>
+      </ion-item>
+      <ion-item-options side="right" >
+        <button type="button" ion-button icon-only >
+            <ion-icon name="create"></ion-icon>
+        </button>
+        <button type="button" ion-button icon-only >
+            <ion-icon name="remove"></ion-icon>
+        </button>
+      </ion-item-options>  
+    </ion-item-sliding> 
+    <!-- ITEM ACTIVIDAD -->
+    <ion-item-sliding style=" border-top:solid 5px #00ffff;" margin-top>      
+      <ion-item color="primary" no-padding  class="barra-izq-der-actividad">          
+          <!-- CONTENIDO DEL ITEM -->
+          <!-- style => color de etiqueta de proyecto -->
+          <ion-item class="item-indicador" no-padding  item-start style="background-color: blueviolet;">            
+            <div class="fecha-desc"  text-center>08/08</div>
+            <div class="fecha-desc" text-center>2018</div>
+            <div class="fecha-desc"  text-center>13:00pm</div>
+          </ion-item>
+          <ion-item class="item-indicador" no-padding  item-end style="background-color: blueviolet;">            
+            <div class="fecha-desc"  text-center>08/08</div>
+            <div class="fecha-desc" text-center>2018</div>
+            <div class="fecha-desc"  text-center>13:00pm</div>
+          </ion-item>          
+          <h6 text-center>Actividad 1</h6>
+          <p text-center>(Proyecto 1)</p>
+          
+          <p class="parrafo-descripcion">Esfuerzo: 10</p>
+          <div class="parrafo-descripcion">Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. At, pariatur.</div>          
+          <!-- style => color de etiqueta de proyecto -->          
+      </ion-item>
+      <ion-item-options side="right" >
+        <button type="button" ion-button icon-only >
+            <ion-icon name="create"></ion-icon>
+        </button>
+        <button type="button" ion-button icon-only >
+            <ion-icon name="remove"></ion-icon>
+        </button>
+      </ion-item-options>  
+    </ion-item-sliding> 
+    <!-- ITEM CATEGORIA -->
+    <ion-item-sliding class="slide-border-categoria" margin-top>      
+        <ion-item color="primary" padding-left   class="barra-izq-categoria">
+            <!-- CONTENIDO DEL ITEM -->                        
+            <h6>Cat 1-Grupo 1</h6>
+            
+            <p class="parrafo-descripcion">Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, esse?</p>            
+        </ion-item>
+        <ion-item-options side="right" >
+          <button type="button" ion-button icon-only >
+              <ion-icon name="create"></ion-icon>
+          </button>
+          <button type="button" ion-button icon-only >
+              <ion-icon name="remove"></ion-icon>
+          </button>
+        </ion-item-options>  
+    </ion-item-sliding>
+    <!-- ITEM CONTENIDO -->
+    <!-- Color del borde -- Es etiqueta  -->
+    <ion-item-sliding class="slide-border-contenido"  margin-top  style="border-left:solid 5px green;">      
+        <ion-item color="primary"    class="barra-izq-categoria">
+            <!-- CONTENIDO DEL ITEM -->                        
+            <h6>Actividad 1</h6>
+            
+            <p class="parrafo-descripcion">Descripción: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, esse?</p>            
+            <p class="parrafo-descripcion">Etiqueta: Cat 1 </p>            
+        </ion-item>
+        <ion-item-options side="right" >
+          <button type="button" ion-button icon-only >
+              <ion-icon name="create"></ion-icon>
+          </button>
+          <button type="button" ion-button icon-only >
+              <ion-icon name="remove"></ion-icon>
+          </button>
+        </ion-item-options>  
+    </ion-item-sliding>
+  </ion-list>
+  <!-- LIST ITEMS -->
+  <ion-footer >
+        <ion-toolbar  color="primary" >
+          <ion-title text-center>COPYRIGHT ©  2018  Byron Rosas | TimeNow Team</ion-title>
+        </ion-toolbar>
+   </ion-footer>
+</ion-content>
+

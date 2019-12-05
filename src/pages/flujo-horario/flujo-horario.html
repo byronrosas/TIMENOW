@@ -1,0 +1,94 @@
+<!--
+  Generated template for the FlujoHorarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'HEADER_HORARIO' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list no-padding>
+    <ion-item-group>
+      <ion-item-divider (tap)="collapse(1)">{{'TIME' | translate}}</ion-item-divider>
+      <ion-list *ngIf="isCollapse">
+          <ion-item padding>
+              <ion-label>{{'FECHA_INICIO' | translate}}</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="fi"></ion-datetime>
+          </ion-item>
+          <ion-item padding>
+              <ion-label>{{'FECHA_FIN' | translate}}</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY" (ionChange)="changeDateFin()" [(ngModel)]="ff"></ion-datetime>    
+          </ion-item>
+          <div no-padding class="flex-align-inline">
+              
+                  <ion-item>
+                          <ion-label floating>{{'HORA_INICIO' | translate}}</ion-label>
+                          <ion-datetime displayFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="horaInicioR"  name="horaInicioR"></ion-datetime>
+                  </ion-item>
+                  
+                  <ion-item >
+                      <!-- (ionChange)="cambioFechaF()"  -->
+                          <ion-label floating>{{'HORA_FIN' | translate}}</ion-label>
+                          <ion-datetime displayFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="horaFinR"  (ionChange)="changeDateFin()" name="horaFinR"></ion-datetime>
+                  </ion-item>          
+          </div>      
+      </ion-list>      
+    </ion-item-group> 
+    
+    <ion-item-group>
+        <ion-item-divider (tap)="collapse(2)">{{ 'PROYECTOS' | translate}}</ion-item-divider>
+        <ion-item *ngIf="isCollapse2">            
+            <ion-scroll class="scroll-proyectos" scrollY="true">        
+                <div *ngFor="let p of proyectoList;let i = index" >
+                    <button type="button"  (click)="ocultarProyecto(p,i,p.estadoAnim)" class="proyectos">
+                      <div>
+                          {{p.nombre}} 
+                      </div> 
+                      <div>
+                        <ion-icon name="eye" *ngIf="p.estadoAnim==true" [ngStyle]="{'color': p.etiqueta}"></ion-icon>
+                        <ion-icon name="eye-off" *ngIf="p.estadoAnim==false" [ngStyle]="{'color': p.etiqueta}"></ion-icon>
+                      </div>
+                    </button>
+        
+                  </div>
+            </ion-scroll>    
+        </ion-item>
+    </ion-item-group>   
+  </ion-list>
+  
+   
+
+  
+
+  <ion-item>
+      <h6>{{'HORARIO'|translate}}</h6>
+      <ion-scroll class="scroll-horario" scrollX="true" scrollY="true">        
+        <div style="width:auto; display : inline-flex;">
+            <div style="width:auto; ">
+                <div style="width:40px; border:1px blue solid; height: 40px;" >
+                    <div style="writing-mode:vertical-lr;transform: rotate(180deg);"></div>
+                </div>
+                <div  style="width:40px; margin:1px; border-radius:2px; border:1px black solid; background: blue;  height: 20px;"  *ngFor="let hora of hour_">
+                    <div>{{hora.hora}}</div>
+                </div>  
+            </div> 
+            <div    *ngFor="let fecha of date_">
+                <div style="writing-mode: vertical-lr;transform: rotate(180deg); height: 40px;" color="primary">{{fecha.DateTrun}}</div>           
+                <div style="width:35px; border:1px #000 solid; height: 20px; background-color: #fff; border-radius: 2px; margin:1px;" *ngFor="let hora of fecha['horario']">
+                   <div *ngIf="verificarJSON(hora['horarioItem'])!=false" (tap)="detail(hora['horarioItem'])" [ngStyle]="{'background-color':hora['horarioItem']['proetiqueta'], 'border-right':'5px solid '+ colorListForView[hora['horarioItem']['estado']], 'width':'100%','height':'100%','border-radius': '2px','font-size':'0.7rem','text-align':'center','color':'white'}" >
+                      {{hora['horarioItem']['peso']}} | {{hora['horarioItem']['proprioridad']}}                                                                        
+                   </div>
+                </div>
+            </div>  
+        </div>                                                  
+      </ion-scroll>
+  </ion-item>
+  
+</ion-content>

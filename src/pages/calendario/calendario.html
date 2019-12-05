@@ -1,0 +1,456 @@
+<!--
+  Generated template for the CalendarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-toolbar>
+            <ion-buttons  left>
+                    <button ion-button  color="light" icon-only  (click)="prev()">
+                            <ion-icon name="arrow-dropleft-circle"></ion-icon>
+                    </button>
+            </ion-buttons> 
+            <ion-buttons left>
+                    <ion-title>{{ 'HEADER_AGENDA' | translate}} [ {{username | slice:0:5}} ]  </ion-title> 
+            </ion-buttons>                       
+            <ion-buttons left>
+                    <button  ion-button color="light" icon-only  (click)="next()">
+                            <ion-icon name="arrow-dropright-circle"></ion-icon>
+                    </button>                                                  
+            </ion-buttons>  
+            
+            <ion-icon left (tap)="openModalInstrucciones()" name="help-circle"></ion-icon>
+                                     
+        <ion-buttons right>              
+                <button ion-button icon-only color="light" (click)="presentPopoverSettings($event)">
+                        <ion-icon name="more"></ion-icon>
+                </button>
+        </ion-buttons>
+    </ion-toolbar> 
+</ion-header>
+
+
+<ion-content>
+  <!-- FAB Para creación -->
+  <ion-fab top right edge>        
+      <button  ion-fab color="vibrant" mini><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list>
+        <!-- CALENDARIO - ACTIVIDAD-->
+        <button ion-fab (click)="gotoPagePlus('ActividadPage')"><ion-icon name="star"></ion-icon></button>
+        <!-- PROYECTOS -->
+        <button ion-fab (click)="gotoPagePlus('ProyectoPage')"><ion-icon name="filing"></ion-icon></button>
+        <!-- CATEGORIAS -->
+        <button ion-fab (click)="gotoPagePlus('CategoriaPage')"> <ion-icon name="clipboard"></ion-icon></button>
+        <!-- ANALITICS -->
+        <button ion-fab (click)="gotoPagePlus('AnaliticPage')"> <ion-icon name="analytics"></ion-icon></button>        
+        <!-- FLUJO HORARIO -->
+        <button ion-fab (click)="gotoPagePlus('FlujoHorarioPage')"> <ion-icon name="calendar"></ion-icon></button>        
+      </ion-fab-list>
+  </ion-fab>  
+  <!-- SLIDES Dia Actual y 3 Días Despues -->
+  <div style="display: table !important;">
+
+  <ion-slides #slides pager="false" style=" background:red; height:100%;" paginationClickable=false effect=slide  (ionSlideDrag)="onIonDrag($event)" >    
+      <!-- CONTENIDO DE PROYECTO - ACTIVITDADES - CALENDARIO -->
+            
+      <ion-slide style="background-color: rgb(148, 207, 148); height:100%;">
+        
+      <!-- AGENDA ITEMS -->
+
+
+
+      <ion-scroll scrollY="true" class="scroll-content-slide">
+            <h2>{{'TODAY' | translate}}</h2>                        
+          <!-- ITEM REPETICION NOTAS -->
+          <div class="flex-inline-calendar">
+            <ion-item class="slides-agenda-item item-text-area  " >                           
+                <ion-item no-padding>                    
+                    <ion-textarea class="text-area-nota" [(ngModel)]="nota.descripcion" name="descripcion" (ionBlur)="saveNota()" (ionFocus)="checkFocus(nota)" [placeholder]="'CREAR_NOTA_RAPIDA_MSN' | translate"></ion-textarea>
+                </ion-item>
+                <!-- <ion-item no-padding *ngIf="!nota.estadoTap">                    
+                        {{nota.descripcion}}
+                        <br>
+                        <strong>{{nota.tiempo}}</strong>
+                        <strong>{{nota.diff}}</strong>
+                        <br>
+                        <ion-icon [name]="nota.notificar"></ion-icon>
+                        <ion-icon [name]="nota.etiqueta1"></ion-icon>
+                        <ion-icon [name]="nota.etiqueta2"></ion-icon>
+                        <ion-icon [name]="nota.etiqueta3"></ion-icon>
+                        <ion-icon [name]="nota.etiqueta4"></ion-icon>
+                </ion-item>    -->
+                <!-- <ion-list>
+                        <ion-item-divider (tap)="collapse(nota)">{{'TIME' | translate}}</ion-item-divider>
+                    <ion-list *ngIf="nota.isCollapse">
+                        <ion-item padding>
+                            <ion-label>{{'FECHA_INICIO' | translate}}</ion-label>
+                            <ion-datetime displayFormat="MM/DD/YYYY HH:mm" (ionChange)="validarFechaMayor(nota)" [(ngModel)]="nota.tiempo" minuteValues="0,15,30,45"></ion-datetime>
+                        </ion-item>                           
+                    </ion-list>
+                </ion-list>
+                        <ion-scroll class="tags" no-padding scrollX="true">                  
+                           <--  <ion-icon name="notifications"></ion-icon>
+                            <ion-icon name="basket"></ion-icon>
+                            <ion-icon name="bicycle"></ion-icon>
+                            <ion-icon name="briefcase"></ion-icon>
+                            <ion-icon name="bus"></ion-icon>
+                            <ion-icon name="cafe"></ion-icon>
+                            <ion-icon name="mail"></ion-icon>
+                            <ion-icon name="call"></ion-icon> -->                                                        
+                            <!-- <ion-icon [attr.name]="icon.id" [class]="icon.class" (tap)="cambioEstadoIcon(nota,indice)" *ngFor="let icon of nota.arrIcons;let indice = index"></ion-icon>
+                        </ion-scroll>                                                          --> 
+                                             
+           </ion-item> 
+
+          <ion-item class="slides-agenda-item item-text-area" (tap)="modoEditarNota(nota)" (swipe)="toogleNotaVisibility($event,index)" [@visibility]="nota.estadoAnim" *ngFor="let nota of notas;let index=index" margin-top>               
+                    <ion-item no-padding *ngIf="nota.estadoTap">                    
+                        <ion-textarea class="text-area-nota" [(ngModel)]="nota.descripcion" name="descripcion" (ionBlur)="checkBlur()" (ionFocus)="checkFocus()" placeholder="Enter a description"></ion-textarea>
+                    </ion-item>
+                    <ion-item no-padding class="content-area" *ngIf="!nota.estadoTap">                    
+                            {{nota.descripcion}}
+                            <!-- <br>
+                            <strong>{{nota.tiempo}}</strong>
+                            <strong>{{nota.diff}}</strong>
+                            <br>
+                            <ion-icon [name]="nota.notificar"></ion-icon>
+                            <ion-icon [name]="nota.etiqueta1"></ion-icon>
+                            <ion-icon [name]="nota.etiqueta2"></ion-icon>
+                            <ion-icon [name]="nota.etiqueta3"></ion-icon>
+                            <ion-icon [name]="nota.etiqueta4"></ion-icon> -->
+                    </ion-item>   
+                    <!-- <ion-list>
+                            <ion-item-divider (tap)="collapse(nota)">{{'TIME' | translate}}</ion-item-divider>
+                        <ion-list *ngIf="nota.isCollapse">
+                            <ion-item padding>
+                                <ion-label>{{'FECHA_INICIO' | translate}}</ion-label>
+                                <ion-datetime displayFormat="MM/DD/YYYY HH:mm" (ionChange)="validarFechaMayor(nota)" [(ngModel)]="nota.tiempo" minuteValues="0,15,30,45"></ion-datetime>
+                            </ion-item>                           
+                        </ion-list>
+                    </ion-list>
+                            <ion-scroll class="tags" no-padding scrollX="true">                  
+                                    <ion-icon [attr.name]="icon.id" [class]="icon.class" (tap)="cambioEstadoIcon(nota,indice)" *ngFor="let icon of nota.arrIcons;let indice = index"></ion-icon>
+                            </ion-scroll>                                                          -->
+                                                 
+        </ion-item> 
+        <!-- ITEM DE REPETICION -->         
+        <ion-slides effect=flip paginationClickable=false margin-top (ionSlideWillChange)="changeSlide(i,0,cal)" *ngFor="let cal of calendarioListToday;let i = index"   [attr.data-index]="i" class="slides-agenda-item">
+                    <ion-slide  (tap)="mostrar(cal)">
+                                  <ion-card no-margin  [ngStyle]="{'border-bottom':'5px solid '+colorListForView[cal.estado]}">
+                                      <ion-card-header [ngStyle]="{'background-color':cal.proetiqueta}">
+                                        <ion-card-title text-wrap>{{cal.actnombre}} ({{cal.peso}})</ion-card-title>
+                                      </ion-card-header>                                      
+                                      <ion-card-content no-padding>                            
+                                              <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                              <div>
+                                                  <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                      <div class="fecha-desc-agenda"  text-center>{{cal.fi}}</div>
+                                                      <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                      <div class="fecha-desc-agenda"  text-center>{{cal.hi}}</div>
+                                                  </ion-badge>                            
+                                                  <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                  <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                      <div class="fecha-desc-agenda"  text-center>{{ cal.ff}}</div>
+                                                      <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                      <div class="fecha-desc-agenda"  text-center>{{ cal.hf}}</div>
+                                                  </ion-badge>
+                                              </div>                                
+                                              {{cal.actdescripcion}}
+                                      </ion-card-content>
+                                  </ion-card>        
+                    </ion-slide> 
+                    <ion-slide >                  
+                          <ion-card no-padding>
+                            <ion-card-content no-padding>
+                                <ion-item>                
+                                    <ion-label>{{cal.estado | translate}}</ion-label>
+                                    <ion-select [(ngModel)]="cal.estado" name="estado">
+                                        <ion-option value="noinicia" (ionSelect)="radioChecked(cal,'noinicia')" [selected]="cal.estado=='noinicia'">{{'noinicia' | translate}}</ion-option>
+                                        <ion-option value="enprogreso" (ionSelect)="radioChecked(cal,'enprogreso')" [selected]="cal.estado=='enprogreso'">{{'enprogreso' | translate}}</ion-option>
+                                        <ion-option value="pendiente" (ionSelect)="radioChecked(cal,'pendiente')" [selected]="cal.estado=='pendiente'">{{'pendiente' | translate}}</ion-option>
+                                        <ion-option value="completada" (ionSelect)="radioChecked(cal,'completada')" [selected]="cal.estado=='completada'">{{'completada' | translate}}</ion-option>
+                                        <ion-option value="cancelada" (ionSelect)="radioChecked(cal,'cancelada')" [selected]="cal.estado=='cancelada'">{{'cancelada' | translate}}</ion-option>
+                                    </ion-select>                                                    
+                                </ion-item>
+                                <!-- <ion-list radio-group [(ngModel)]="cal.estado">
+                                    <ion-item>
+                                      <ion-label>No inicia</ion-label>
+                                      <ion-radio value="noinicia" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='noinicia'"></ion-radio>
+                                    </ion-item>
+                                    <ion-item>
+                                      <ion-label>En progreso</ion-label>
+                                      <ion-radio value="enprogreso" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='enprogreso'"></ion-radio>
+                                    </ion-item>
+                                    <ion-item>
+                                      <ion-label>Pendiente</ion-label>
+                                      <ion-radio value="pendiente" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='pendiente'"></ion-radio>
+                                    </ion-item>
+                                    <ion-item>
+                                      <ion-label>Completado</ion-label>
+                                      <ion-radio value="completada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='completada'"></ion-radio>
+                                    </ion-item>
+                                    <ion-item>
+                                      <ion-label>Cancelado</ion-label>
+                                      <ion-radio value="cancelada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='cancelada'"></ion-radio>
+                                    </ion-item>
+                                </ion-list> -->
+                                <ion-item>
+                                    <button ion-button type="button" (click)="tapEvent($event,i,cal.estadoAnim,0)">
+                                        Eliminar                        
+                                    </button>                                                          
+                                </ion-item>
+                            </ion-card-content>
+                          </ion-card>
+                                                                                                                                                    
+                    </ion-slide>
+        </ion-slides>
+          </div>          
+      </ion-scroll>
+      </ion-slide>
+      <ion-slide style="background-color: rgb(187, 187, 250); height: 100%;">
+        
+        <!-- AGENDA ITEMS -->
+        <ion-scroll scrollY="true" class="scroll-content-slide">
+                <h2>{{'TOMORROW' | translate}}</h2>
+      <div class="flex-inline-calendar">
+          <!-- ITEM DE REPETICION --> 
+          <ion-slides effect=flip paginationClickable=false (ionSlideWillChange)="changeSlide(i,0,cal)" *ngFor="let cal of calendarioListTomorrow;let i = index"   [attr.data-index]="i" class="slides-agenda-item">
+                      <ion-slide  (tap)="mostrar(cal)" [ngStyle]="{'background-color': colorList[cal.estado]}">
+                                    <ion-card no-margin [ngStyle]="{'border-bottom':'5px solid '+cal.proetiqueta}">
+                                        <ion-card-header [ngStyle]="{'background-color':cal.proetiqueta}">
+                                          <ion-card-title text-wrap>{{cal.actnombre}} ({{cal.peso}})</ion-card-title>
+                                        </ion-card-header>
+                                        <ion-card-content no-padding>                            
+                                                <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                <div>
+                                                    <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                        <div class="fecha-desc-agenda"  text-center>{{cal.fi}}</div>
+                                                        <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                        <div class="fecha-desc-agenda"  text-center>{{cal.hi}}</div>
+                                                    </ion-badge>                            
+                                                    <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                    <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                        <div class="fecha-desc-agenda"  text-center>{{ cal.ff}}</div>
+                                                        <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                        <div class="fecha-desc-agenda"  text-center>{{ cal.hf}}</div>
+                                                    </ion-badge>
+                                                </div>                                
+                                                {{cal.actdescripcion}}
+                                        </ion-card-content>
+                                    </ion-card>        
+                      </ion-slide> 
+                      <ion-slide>                  
+                          <ion-card no-padding>
+                              <ion-card-content no-padding>
+                                  <ion-item>                
+                                      <ion-label>{{cal.estado}}</ion-label>
+                                      <ion-select [(ngModel)]="cal.estado" name="estado">
+                                        <ion-option value="noinicia" (ionSelect)="radioChecked(cal,'noinicia')" [selected]="cal.estado=='noinicia'">{{'noinicia' | translate}}</ion-option>
+                                        <ion-option value="enprogreso" (ionSelect)="radioChecked(cal,'enprogreso')" [selected]="cal.estado=='enprogreso'">{{'enprogreso' | translate}}</ion-option>
+                                        <ion-option value="pendiente" (ionSelect)="radioChecked(cal,'pendiente')" [selected]="cal.estado=='pendiente'">{{'pendiente' | translate}}</ion-option>
+                                        <ion-option value="completada" (ionSelect)="radioChecked(cal,'completada')" [selected]="cal.estado=='completada'">{{'completada' | translate}}</ion-option>
+                                        <ion-option value="cancelada" (ionSelect)="radioChecked(cal,'cancelada')" [selected]="cal.estado=='cancelada'">{{'cancelada' | translate}}</ion-option>
+                                      </ion-select>                                                    
+                                  </ion-item>
+                                  <!-- <ion-list radio-group [(ngModel)]="cal.estado">
+                                      <ion-item>
+                                        <ion-label>No inicia</ion-label>
+                                        <ion-radio value="noinicia" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='noinicia'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>En progreso</ion-label>
+                                        <ion-radio value="enprogreso" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='enprogreso'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Pendiente</ion-label>
+                                        <ion-radio value="pendiente" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='pendiente'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Completado</ion-label>
+                                        <ion-radio value="completada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='completada'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Cancelado</ion-label>
+                                        <ion-radio value="cancelada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='cancelada'"></ion-radio>
+                                      </ion-item>
+                                  </ion-list> -->
+                                  <ion-item>
+                                      <button ion-button type="button" (click)="tapEvent($event,i,cal.estadoAnim,0)">
+                                          Eliminar                        
+                                      </button>                                                          
+                                  </ion-item>
+                              </ion-card-content>
+                            </ion-card>                             
+                      </ion-slide>
+          </ion-slides>
+        </div> 
+    </ion-scroll>
+      </ion-slide>
+    
+      <ion-slide style="background-color: rgb(228, 133, 133); height:100%;">
+        
+        <!-- AGENDA ITEMS -->
+        <ion-scroll scrollY="true" class="scroll-content-slide">
+                <h2>{{'TWO_DAYS' | translate}}</h2>
+      <div class="flex-inline-calendar">
+          <!-- ITEM DE REPETICION --> 
+          <ion-slides effect=flip paginationClickable=false (ionSlideWillChange)="changeSlide(i,0,cal)" *ngFor="let cal of calendarioListTwoDays;let i = index"   [attr.data-index]="i" class="slides-agenda-item">
+                      <ion-slide  (tap)="mostrar(cal)" [ngStyle]="{'background-color': colorList[cal.estado]}">
+                                    <ion-card no-margin [ngStyle]="{'border-bottom':'5px solid '+cal.proetiqueta}">
+                                        <ion-card-header [ngStyle]="{'background-color':cal.proetiqueta}">
+                                          <ion-card-title text-wrap>{{cal.actnombre}} ({{cal.peso}})</ion-card-title>
+                                        </ion-card-header>
+                                        <ion-card-content no-padding>                            
+                                                <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                <div>
+                                                    <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                        <div class="fecha-desc-agenda"  text-center>{{cal.fi}}</div>
+                                                        <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                        <div class="fecha-desc-agenda"  text-center>{{cal.hi}}</div>
+                                                    </ion-badge>                            
+                                                    <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                    <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                        <div class="fecha-desc-agenda"  text-center>{{ cal.ff}}</div>
+                                                        <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                        <div class="fecha-desc-agenda"  text-center>{{ cal.hf}}</div>
+                                                    </ion-badge>
+                                                </div>                                
+                                                {{cal.actdescripcion}}
+                                        </ion-card-content>
+                                    </ion-card>        
+                      </ion-slide> 
+                      <ion-slide>                  
+                          <ion-card no-padding>
+                              <ion-card-content no-padding>
+                                  <ion-item>                
+                                      <ion-label>{{cal.estado}}</ion-label>
+                                      <ion-select [(ngModel)]="cal.estado" name="estado">
+                                        <ion-option value="noinicia" (ionSelect)="radioChecked(cal,'noinicia')" [selected]="cal.estado=='noinicia'">{{'noinicia' | translate}}</ion-option>
+                                        <ion-option value="enprogreso" (ionSelect)="radioChecked(cal,'enprogreso')" [selected]="cal.estado=='enprogreso'">{{'enprogreso' | translate}}</ion-option>
+                                        <ion-option value="pendiente" (ionSelect)="radioChecked(cal,'pendiente')" [selected]="cal.estado=='pendiente'">{{'pendiente' | translate}}</ion-option>
+                                        <ion-option value="completada" (ionSelect)="radioChecked(cal,'completada')" [selected]="cal.estado=='completada'">{{'completada' | translate}}</ion-option>
+                                        <ion-option value="cancelada" (ionSelect)="radioChecked(cal,'cancelada')" [selected]="cal.estado=='cancelada'">{{'cancelada' | translate}}</ion-option>
+                                      </ion-select>                                                    
+                                  </ion-item>
+                                  <!-- <ion-list radio-group [(ngModel)]="cal.estado">
+                                      <ion-item>
+                                        <ion-label>No inicia</ion-label>
+                                        <ion-radio value="noinicia" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='noinicia'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>En progreso</ion-label>
+                                        <ion-radio value="enprogreso" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='enprogreso'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Pendiente</ion-label>
+                                        <ion-radio value="pendiente" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='pendiente'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Completado</ion-label>
+                                        <ion-radio value="completada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='completada'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Cancelado</ion-label>
+                                        <ion-radio value="cancelada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='cancelada'"></ion-radio>
+                                      </ion-item>
+                                  </ion-list> -->
+                                  <ion-item>
+                                      <button ion-button type="button" (click)="tapEvent($event,i,cal.estadoAnim,0)">
+                                          Eliminar                        
+                                      </button>                                                          
+                                  </ion-item>
+                              </ion-card-content>
+                            </ion-card>                           
+                      </ion-slide>
+          </ion-slides>
+        </div>
+    </ion-scroll>
+      </ion-slide>
+      <ion-slide style="background-color: rgba(50, 50,50); height:100%;">
+        
+        <!-- calendarioListThreeDays -->
+        <!-- AGENDA ITEMS -->
+        <ion-scroll scrollY="true" class="scroll-content-slide">
+                <h2>{{'THREE_DAYS' | translate}}</h2>
+      <div class="flex-inline-calendar">
+          <!-- ITEM DE REPETICION --> 
+          <ion-slides effect=flip paginationClickable=false (ionSlideWillChange)="changeSlide(i,0,cal)" *ngFor="let cal of calendarioListThreeDays;let i = index"   [attr.data-index]="i" class="slides-agenda-item">
+                      <ion-slide  (tap)="mostrar(cal)" [ngStyle]="{'background-color': colorList[cal.estado]}">
+                                    <ion-card no-margin [ngStyle]="{'border-bottom':'5px solid '+cal.proetiqueta}">
+                                        <ion-card-header [ngStyle]="{'background-color':cal.proetiqueta}">
+                                          <ion-card-title text-wrap>{{cal.actnombre}} ({{cal.peso}})</ion-card-title>
+                                        </ion-card-header>
+                                        <ion-card-content no-padding>                            
+                                                <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                <div>
+                                                    <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                        <div class="fecha-desc-agenda"  text-center>{{cal.fi}}</div>
+                                                        <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                        <div class="fecha-desc-agenda"  text-center>{{cal.hi}}</div>
+                                                    </ion-badge>                            
+                                                    <!-- <ion-badge class="bgBlueViolet">cal.</ion-badge> -->
+                                                    <ion-badge class="bgAqua badge-fecha-agenda" right>
+                                                        <div class="fecha-desc-agenda"  text-center>{{ cal.ff}}</div>
+                                                        <!-- <div class="fecha-desc-agenda" text-center>2018</div> -->
+                                                        <div class="fecha-desc-agenda"  text-center>{{ cal.hf}}</div>
+                                                    </ion-badge>
+                                                </div>                                
+                                                {{cal.actdescripcion}}
+                                        </ion-card-content>
+                                    </ion-card>        
+                      </ion-slide> 
+                      <ion-slide>                  
+                          <ion-card no-padding>
+                              <ion-card-content no-padding>
+                                  <ion-item>                
+                                      <ion-label>{{cal.estado}}</ion-label>
+                                      <ion-select [(ngModel)]="cal.estado" name="estado">
+                                        <ion-option value="noinicia" (ionSelect)="radioChecked(cal,'noinicia')" [selected]="cal.estado=='noinicia'">{{'noinicia' | translate}}</ion-option>
+                                        <ion-option value="enprogreso" (ionSelect)="radioChecked(cal,'enprogreso')" [selected]="cal.estado=='enprogreso'">{{'enprogreso' | translate}}</ion-option>
+                                        <ion-option value="pendiente" (ionSelect)="radioChecked(cal,'pendiente')" [selected]="cal.estado=='pendiente'">{{'pendiente' | translate}}</ion-option>
+                                        <ion-option value="completada" (ionSelect)="radioChecked(cal,'completada')" [selected]="cal.estado=='completada'">{{'completada' | translate}}</ion-option>
+                                        <ion-option value="cancelada" (ionSelect)="radioChecked(cal,'cancelada')" [selected]="cal.estado=='cancelada'">{{'cancelada' | translate}}</ion-option>
+                                      </ion-select>                                                    
+                                  </ion-item>
+                                  <!-- <ion-list radio-group [(ngModel)]="cal.estado">
+                                      <ion-item>
+                                        <ion-label>No inicia</ion-label>
+                                        <ion-radio value="noinicia" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='noinicia'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>En progreso</ion-label>
+                                        <ion-radio value="enprogreso" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='enprogreso'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Pendiente</ion-label>
+                                        <ion-radio value="pendiente" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='pendiente'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Completado</ion-label>
+                                        <ion-radio value="completada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='completada'"></ion-radio>
+                                      </ion-item>
+                                      <ion-item>
+                                        <ion-label>Cancelado</ion-label>
+                                        <ion-radio value="cancelada" (ionSelect)="radioChecked(cal)" [checked]="cal.estado=='cancelada'"></ion-radio>
+                                      </ion-item>
+                                  </ion-list> -->
+                                  <ion-item>
+                                      <button ion-button type="button" (click)="tapEvent($event,i,cal.estadoAnim,0)">
+                                          Eliminar                        
+                                      </button>                                                          
+                                  </ion-item>
+                              </ion-card-content>
+                            </ion-card>                            
+                      </ion-slide>
+          </ion-slides>
+        </div>
+    </ion-scroll>
+      </ion-slide>       
+  </ion-slides>
+
+  
+</div>
+      
+  
+</ion-content>

@@ -1,0 +1,7 @@
+<!-- Generated template for the PopoverSettingsComponent component -->
+
+<ion-list radio-group class="popover-settings">       
+  <ion-item *ngFor="let item of items"   (click)="itemClick(item)"> 
+        {{item.translate | translate}}
+  </ion-item>  
+</ion-list>

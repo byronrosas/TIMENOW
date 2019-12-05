@@ -1,0 +1,289 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+$fontfamily:"Montserrat";
+$font-family-md-base: $fontfamily, sans-serif !default; // THIS DOES WORK
+$font-family-ios-base: $fontfamily, sans-serif !default; // THIS DOES WORK
+$font-family-wp-base: $fontfamily, sans-serif !default; // THIS DOES WORK
+$primary-color:#162eae;
+$text-color:        #858585;
+$text-color-light: #e6e6e6;  
+$background-color:  #e6e6e6;
+
+
+
+$toolbar-md-title-font-size:0.6em;
+$toolbar-ios-title-font-size:0.6em;
+$toolbar-md-title-text-align:center;
+$toolbar-ios-title-text-align:center;
+
+$text-input-highlight-color-valid:$text-color;
+
+
+// FUENTE TITULOS
+$titulos-pages-size:1.3em;
+
+
+// ion-header{
+//   ion-navbar{
+//     ion-title{
+//       background-color: #f53d3d;
+//       background-image: url('../assets/img/toolbarbg.png') no-repeat transparent;
+//     }    
+//   }
+// }
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+
+
+$colors: (
+  primary:    #162eae,
+  secondary:  #4A60D7,
+  danger:     #f53d3d,
+  light:      #e6e6e6,
+  dark:       #4d4d4d,  
+  bluedark:       #000080  ,
+  great:       hsl(56, 100%, 50%) 
+);
+
+
+// card de agenda
+$card-md-title-text-color : map-get($colors,light);
+$card-md-title-font-size : 1em;
+$card-md-header-padding : 5px;
+$card-md-title-padding : 0px;
+$card-md-title-margin : 0px;
+
+//Color fechas back button
+ion-header ion-icon.back-button-icon.icon
+{
+  color:map-get($colors, light );
+}
+.separador{  
+  box-shadow: 0px 0px 1px 1px #4A60D7;
+}
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+ion-navbar{
+  div.toolbar-background {
+      background: url('../assets/img/splashbg.png') no-repeat transparent !important;
+      background-size: 100% 100% !important;            
+      }  
+  .toolbar-title{
+    color:map-get($colors,light) !important;
+    font-size:$titulos-pages-size;
+  }
+}
+
+
+
+.barra-izq-proyecto{     
+  .item-indicador
+  {
+    width: 40px;    
+    min-width: 50px; 
+    h1{
+      vertical-align: middle;
+      color:map-get($colors,light);
+    }
+  }
+  .parrafo-descripcion{
+    font-size: 0.6em;
+  }
+}
+
+.barra-izq-categoria{     
+  .item-indicador
+  {
+    width: 20px;    
+    min-width: 50px; 
+  }
+  .parrafo-descripcion{
+    font-size: 0.6em;
+  }
+}
+
+
+.barra-izq-der-actividad{     
+  .item-indicador
+  {
+    width: 40px;    
+    min-width: 50px; 
+    margin-right: 0px !important;
+    h1{
+      vertical-align: middle;
+      color:map-get($colors,light);
+    }
+  }
+  .item-inner{
+    padding-right : 0px !important;
+    padding-left: 2px;        
+  }
+  .parrafo-descripcion{
+    font-size: 0.6em;
+  }
+  .fecha-desc{
+    font-size: 0.5em;
+    color: map-get($colors,light);
+  }
+}
+
+.badge-fecha-agenda
+{
+  width: 45%!important;
+  background-color: map-get($colors,bluedark);
+}
+.fecha-desc-agenda
+{
+  font-size: 0.7em;
+  color: map-get($colors,light);
+}
+
+.slide-border-categoria
+{  
+  border-left:solid 5px map-get($colors,bluedark);
+}
+
+.opt-agenda-item
+{
+  font-size: 0.6em;
+  padding: 0px;
+  height: 10px;
+}
+
+
+.flex-container{
+ display: flex;
+ flex-wrap: wrap;
+ align-content: stretch; 
+ justify-content: space-around;
+}
+
+// SOLO PARA CALENDARIO
+.item-radio-agenda
+{
+  min-height:0.5em !important;
+}
+
+
+
+.slides-agenda-item
+{
+  width:45%;
+  height: auto;
+  ion-slide{
+    height: 100%;
+  }   
+}
+
+.segment-view
+{
+  bottom: 0 !important; 
+  height:15px;
+}
+
+.msnerr
+{
+  color: #f53d3d !important;
+}
+.custom-spinner-container
+{  
+  width: 10rem;
+  height:  5rem;   
+  text-align: center;
+  .text{
+    padding-bottom: 8px;
+  } 
+  .custom-spinner-box
+  {
+    background: url('../assets/img/loader.png') no-repeat transparent;
+    background-size: 100% 100%;
+    width: 3rem;
+    height: 3rem;
+    margin: 0px auto;
+    padding: 15px;     
+    animation-name: rotacion-load;
+    animation-duration: 2s; 
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+
+@keyframes rotacion-load {
+  from {
+    -ms-transform: rotate(0deg); /* IE 9 */
+    -webkit-transform: rotate(0deg); /* Safari */
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Safari */
+    transform: rotate(360deg);
+  }
+}
+// $segment-button-md-background-color:$text-color-light;
+// $segment-button-md-background-color-activated:$primary-color;
+// $segment-button-md-text-color:$segment-button-md-background-color-activated;
+
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";

@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-navbar [color]="isRecording ? 'danger' : 'primary'">
+    <ion-title>
+      {{'HEADER_CONTENIDO' | translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- <button ion-button full (click)="getPermission()">Permiso Grabar</button>
+    <button ion-button full (click)="startListening()">Iniciar Grabar</button>
+    <button ion-button full (click)="stopListening()" *ngIf="isIos()">Detener</button>     -->
+    
+    <div [ngSwitch]="optVista" >
+        <!-- NEW VIEW  -->
+        <form (submit)="doSaveContent()"  *ngSwitchCase="'newview'">  
+            <ion-list>                           
+                <ion-item no-padding>
+                    <ion-label floating>{{'CTP_NOMBRE' | translate}}:</ion-label>
+                    <ion-input type="text" [(ngModel)]="actividad.nombre" #nombre="ngModel" name="nombre" (ionChange)="validatorFn()" required></ion-input>                    
+                </ion-item>
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">                                    
+                        <div  class="msnerr" *ngIf="nombre.errors.required">
+                            {{ 'MSN_INPUT_VALIDAR' | translate}}
+                        </div>
+                </div>
+                
+                <ion-item no-padding>          
+                    <ion-label floating>{{'CTP_DESCRIPCION' | translate}}:</ion-label>
+                    <ion-textarea [(ngModel)]="actividad.descripcion" name="descripcion" #descripcion="ngModel" required></ion-textarea>
+                </ion-item>
+                <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">                                    
+                        <div  class="msnerr" *ngIf="descripcion.errors.required">
+                            {{ 'MSN_INPUT_VALIDAR' | translate}}
+                        </div>
+                  </div>
+
+                <div no-padding margin-top class="separador"></div>       
+                <ion-item no-padding>
+                    <ion-item no-padding>{{'ETIQUETA' | translate}}: <ion-badge class="bgAqua" [ngStyle]="{'background-color':actividad.etiqueta}">{{actividad.etiqueta}}</ion-badge></ion-item>                    
+                    <ion-scroll scrollX="true">               
+                        <ion-badge (click)="selectEtiqueta(color)" *ngFor="let color of colorList"  [ngStyle]="{'background-color':color}">{{color}}</ion-badge>                                                                         
+                    </ion-scroll>                    
+                </ion-item> 
+                <div no-padding margin-top class="separador"></div>       
+
+                                
+                                       
+                <ion-item no-padding>                
+                    <ion-label>{{'CATEGORIA' | translate}}:</ion-label>
+                    <ion-select item-left [(ngModel)]="actividad.idcategoria" #categoria="ngModel" name="idcategoria" required>
+                        <ion-option *ngFor="let categoria of categoriaList" [value]="categoria.idcategoria">{{categoria.nombre}}</ion-option>                     
+                    </ion-select>                    
+                    <button ion-button item-right (click)="gotoPagePlus('CategoriaPage')" >+ {{'CATEGORIA' | translate}}</button>                                                                                         
+                </ion-item>
+                <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
+                        <div  class="msnerr" *ngIf="categoria.errors.required || categoria.errors.required">
+                            {{ 'MSN_INPUT_VALIDAR' | translate}}
+                        </div>                                                                                                                   
+                </div>
+                
+                <div padding *ngIf="btnUpdate" >
+                        <button ion-button color="primary" block>{{'BTN_ACTUALIZAR' | translate}}</button>
+                    </div>
+                    <div padding *ngIf="!btnUpdate">
+                        <button ion-button color="primary" block>{{'BTN_GUARDAR' | translate}}</button>
+                    </div>
+            </ion-list>      
+        </form>
+        <!-- LIST VIEW -->
+        <ion-list *ngSwitchCase="'listview'">
+                <ion-item no-padding>
+                    <ion-searchbar  no-padding  placeholder="Filtrar contenidos" (ionInput)="filterItems($event)"></ion-searchbar>                                    
+                </ion-item> 
+
+                <ion-item-sliding class="slide-border-contenido" *ngFor="let content of actividadList;let i = index"  margin-top  [ngStyle]="{'border-left':'solid 5px '+content.etiqueta}" (click)="detail(content)">      
+                        <ion-item color="primary"    class="barra-izq-categoria">
+                            <!-- CONTENIDO DEL ITEM -->                        
+                            <h6>{{content.nombre}}</h6>
+                            
+                            <p class="parrafo-descripcion"><strong>{{'CTP_DESCRIPCION' | translate}}:</strong></p>            
+                            <p class="parrafo-descripcion">{{content.descripcion}}</p>            
+                            <p class="parrafo-descripcion"><strong>{{'CATEGORIA' | translate}}:</strong> {{content.catnombre}}</p>                                        
+                        </ion-item>
+                        <ion-item-options side="right" >
+                          <button type="button" ion-button icon-only (click)="update(content)">
+                              <ion-icon name="create"></ion-icon>
+                          </button>
+                          <button type="button" ion-button icon-only (click)="delete(content,i)">
+                              <ion-icon name="remove"></ion-icon>
+                          </button>
+                        </ion-item-options>  
+                </ion-item-sliding>  
+                <ion-item *ngIf="actividadList.length==0 || actividadList==null">
+                        {{'MSN_NO_EXISTEN' | translate }}
+                </ion-item>                                    
+        </ion-list>
+    </div>
+    <div no-padding margin-bottom class="separador"></div>       
+    <ion-toolbar ion-fixed  border-top no-border-bottom class="segment-view">
+            <ion-segment  [(ngModel)]="optVista"   color="primary" class="segment-view">
+                    <ion-segment-button value="newview" checked>
+                        <ion-icon name="add"></ion-icon>
+                    </ion-segment-button>
+                    <ion-segment-button value="listview">
+                        <ion-icon name="list"></ion-icon>
+                    </ion-segment-button>
+            </ion-segment>      
+    </ion-toolbar>  
+</ion-content>

@@ -1,0 +1,105 @@
+page-calendario {
+    .scroll-content-slide
+    {
+        white-space: nowrap;
+        width:100vw;
+        height:100vh;
+    }
+
+    .content-area
+    {
+        white-space: normal !important;
+    }
+    .no-scroll {
+        scroll-content {
+            overflow-y: hidden;
+        }
+    }
+    
+    .scroll {
+        scroll-content {
+            overflow-y: scroll;
+        }
+    }
+    .bgBlueViolet
+    {
+        background-color: blueviolet;
+    }
+
+    .bgRedCrimson
+    {
+        background-color: crimson;
+    }
+    .bgAqua
+    {
+        background-color: #0000ff;
+    }
+
+    .bgAquaMarine
+    {
+        background-color: aquamarine;
+    }
+    .bgDeepPink
+    {
+        background-color: deeppink
+    }
+    .bgGreen
+    {
+        background-color: darkgreen;
+    }
+
+    .bg-delete
+    {
+        background-image: url('../assets/img/cerrar.jpg');
+        background-size: 40px 40px;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        
+    }
+
+    ion-toolbar{
+        div.toolbar-background {
+            background: url('../assets/img/splashbg.png') no-repeat transparent !important;
+            background-size: 100% 100% !important;            
+            }  
+        .toolbar-title{
+          color:map-get($colors,light) !important;
+          font-size:$titulos-pages-size;
+        }
+    }
+    .flex-align-inline
+    {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;        
+    }
+
+    .flex-inline-calendar
+    {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+    
+
+    .item-text-area
+    {
+        width: 45% !important;      
+        height:auto;
+    }
+    .tags{
+       white-space: nowrap;
+       height: 20px;
+       .scroll-content{
+           padding:0px !important;
+       }         
+    }
+   .item-input-has-focus .label-md[stacked],
+   .input-has-focus .label-md[stacked],
+   .item-input-has-focus .label-md[floating],
+   .input-has-focus .label-md[floating],
+   {
+   color: #3df5d6 !important;
+   }
+}

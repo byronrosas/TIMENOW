@@ -1,0 +1,199 @@
+{
+  "BACK_BUTTON_TEXT": "Back",
+
+  "NAME": "Name",
+  "EMAIL": "Email",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Sign in",
+  "SIGNUP": "Sign up",
+
+  "TAB1_TITLE": "Items",
+  "TAB2_TITLE": "Search",
+  "TAB3_TITLE": "Settings",
+
+  "MAP_TITLE": "Map",
+
+  "TUTORIAL_SKIP_BUTTON": "Skip",
+  "TUTORIAL_CONTINUE_BUTTON": "Continue",
+
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+
+  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+
+  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+
+  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+
+  "WELCOME_INTRO": "The starting point for your next great Ionic app",
+
+  "SETTINGS_TITLE": "Settings",
+  "SETTINGS_OPTION1": "Option 1",
+  "SETTINGS_OPTION2": "Option 2",
+  "SETTINGS_OPTION3": "Option 3",
+  "SETTINGS_OPTION4": "Option 4",
+
+  "SETTINGS_PROFILE_BUTTON": "Edit Profile",
+
+  "SETTINGS_PAGE_PROFILE": "Edit Profile",
+
+  "WELCOME_TITLE": "Welcome",
+
+  "LOGIN_TITLE": "Sign in",
+  "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
+  "LOGIN_BUTTON": "Sign in",
+  "SIGNUP_TITLE": "Sign up",
+  "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
+  "SIGNUP_BUTTON": "Sign up",
+
+  "LIST_MASTER_TITLE": "Items",
+
+  "ITEM_CREATE_TITLE": "New Item",
+  "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",
+
+  "ITEM_NAME_PLACEHOLDER": "Name",
+  "ITEM_ABOUT_PLACEHOLDER": "About",
+
+  "DONE_BUTTON": "Done",
+  "CANCEL_BUTTON": "Cancel",
+  "DELETE_BUTTON": "Delete",
+
+  "CARDS_TITLE": "Social",
+
+  "SEARCH_TITLE": "Search",
+  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
+
+  "ESPANOL":"Spanish",
+  "INGLES":"English",
+  "MI_CUENTA":"My Account",
+  "CAMBIAR_A_PRO":"Update to Pro",
+  "IDIOMA":  "Idioms",
+  "CERRAR_SESION":"Logout",
+  "BTN_CANCELAR":"Cancelar",
+  "BTN_ACEPTAR":"Aceptar",
+
+
+  "HEADER_PROYECTO":"PROJECT",  
+  "PROYECTO":"Project",
+  "PROYECTOS":"Projects",
+  "HEADER_CATEGORIA":"CATEGORY",
+  "CATEGORIA":"Category",
+  "HEADER_CONTENIDO":"CONTENT",
+  "CONTENIDO":"Content",
+  "HEADER_AGENDA":"AGENDA",
+  "AGENDA":"Agenda",
+  "HEADER_ACTIVIDAD":"ACTIVITY",
+  "ACTIVIDAD":"Activity",
+  "HEADER_HORARIO":"SCHEDULE",
+  "HORARIO":"Schedule",
+    
+  "TODAY":"TODAY",
+  "TOMORROW":"TOMORROW",
+  "TWO_DAYS":"2 DAYS LATER",
+  "THREE_DAYS":"3 DAYS LATER",  
+
+  "BTN_GUARDAR_PROYECTO":"Save Project",  
+  "BTN_GUARDAR_CATEGORIA":"Save Category",
+  "BTN_GUARDAR_CONTENIDO":"Save Content",
+  "BTN_GUARDAR_AGENDA":"Save Agenda",
+  "BTN_GUARDAR_ACTIVIDAD":"Save Activity",
+  "BTN_GUARDAR_HORARIO":"Save Schedule",
+
+  "BTN_GUARDAR":"Save",
+  "BTN_ACTUALIZAR":"Update",
+
+  "CTP_NOMBRE":"Name",
+  "CTP_DESCRIPCION":"Description",
+  "ETIQUETA":"Tag",
+  "PRIORIDAD":"Priority",
+  "MENOR":"Less",
+  "MAYOR":"Higher",
+  "TIEMPO_INICIO":"Start Time",
+  "TIEMPO_FIN":"End Time",
+  "ESTADO_INICIAL":"Initial State",
+  "PROYECTO_CONTENIDO":"Project-Content",
+  "ESFUERZO_NECESARIO":"Effort",
+
+  "INICIO":"Start",
+  "FIN":"End",
+
+
+  "noinicia":"Not Started",
+  "enprogreso":"In Progress",
+  "pendiente":"Pending",
+  "completada":"Completed",
+  "cancelada":"Cancelled",
+
+  "BTN_ACTUALIZAR_PROYECTO":"Update Project",  
+  "BTN_ACTUALIZAR_CATEGORIA":"Update Category",
+  "BTN_ACTUALIZAR_CONTENIDO":"Update Content",
+  "BTN_ACTUALIZAR_AGENDA":"Update Agenda",
+  "BTN_ACTUALIZAR_ACTIVIDAD":"Update Activity",
+  "BTN_ACTUALIZAR_HORARIO":"Update Schedule",
+  
+  "MENSAJE_BIENVENIDA":"A fast and efficient way to optimize your time.",
+  "ANTES_INGRESO":"Please Log in or Sign in It is necessary to keep your information secure.",
+  "BTN_REGISTRARSE":"Sign in",
+  "BTN_INICIAR_SESION":"Log in",
+  "BTN_CONTINUAR":"Continue",
+  "PLH_USUARIO":"User",
+  
+  
+  "PLH_EMAIL":"Email",
+  "PLH_CONTRASENIA":"Password",
+  "BTN_OLVIDASTE_PW":"Did you forget your password?",
+
+  "ALERT_REC_PW_TITLE":"Recover Password",
+  "ALERT_REC_PW_CONTENT":"A message with your password will be sent to this email.",
+  "MSN_NO_EXISTEN":"There are no items created.",
+  "ELEMENTOS":"items",
+  "TIPO_UNICO":"Single",
+  "TIPO_RECURRENTE": "Recurrent",
+
+  "FECHA_INICIO":"Start date",
+  "FECHA_FIN":"End date",
+  "HORA_INICIO":"Start time",
+  "HORA_FIN":"End time",
+  "DIAS_REPETIDOS":"# Days",
+
+  "ERROR_MSN":"Sorry an error occurred, please try again later.",
+  "ESTADO_ACT_MSN":"The status of an activity has been changed to:",
+  "ERROR_LIST_MSN":"Error listing items",
+  
+  "SUG_ELIMINAR_MSN":"Do you want to delete this element permanently?",
+  
+  "BTN_ELIMINAR":"Delete",
+  "ELIMINAR":"Deleted",
+  "ELIMINAR_MSN":"The item has been removed successfully.",
+  "ACTUALIZAR_MSN":"The item has been updated successfully.",
+  "GUARDAR_MSN":"The item has been saved successfully.",
+  "ERROR":"Error",
+  "ERROR_SESION_MSN":"Try to close session later.",
+
+  "DETALLE":"Detail",
+  "EXISTENCIA_ACT_MSN":"There is another activity taking this time range.",
+  "FECHA_VALIDACION_MSN":"Verify that the dates are greater than the current date, and that the final date is greater than the initial date.",
+  
+  "SE_HAN_ELIMINADO_MSN":"",
+  "ACT_RECURRENTES_MSN":" activities have been eliminated.",
+  "ELIMINAR_RECURRENTES":"Delete Recurring",
+  "ELIMINAR_RECURRENCIAS_MSN":"Delete Recurrent!",
+  "ELIMINAR_RECURRENTES_MSN":"By eliminating this activity, all similar activities are deleted in: Start time, End time, name, etc., which are recurrent.",
+  "ADVERTENCIA_NOT_PROGRESS":"It can not be deleted, this element contains contains linked items. All progress will be deleted.",
+  "ADVERTENCIA":"Warning",
+  "CARGANDO":"Loading ...",
+  "ESTA_ES_ACT_REC":"This is a recurring activity",
+  "TIME":"Time",
+  "CREAR_NOTA_RAPIDA_MSN":"Create a quick note",
+  "EN_ESTE_MOMENTO_I_MSN":"(At this time start)",
+  "EN_ESTE_MOMENTO_F_MSN":"(At this moment it ends)",
+  "PROGRESS_PROYECTO_MSN":"Progress of the project:",  
+  "MSN_INPUT_VALIDAR":"This field is required.",
+  "MSN_INPUT_VERIFICAR":"Verify dates.",
+  "MSN_INPUT_NUMBER":"This field accepts only numbers.",
+  "MSN_INPUT_VERIFICAR_MAYOR_ACTUAL":"Verify that the date is greater than the current date.",
+  "MSN_INPUT_VERIFICAR_MAYOR_INICIO":"Verify that the date is greater than the start date."
+}

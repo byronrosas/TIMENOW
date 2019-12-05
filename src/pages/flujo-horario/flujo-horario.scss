@@ -1,0 +1,26 @@
+page-flujo-horario {
+    .scroll-horario
+    {
+        white-space: nowrap;
+        height: 200rem;
+    }
+
+    .scroll-proyectos
+    {
+        white-space: nowrap;
+        height: 120px;
+    }
+    .proyectos
+    {
+        display: inline-flex;
+        justify-content:space-between;        
+        width: 100%;
+    }
+
+    .flex-align-inline
+    {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

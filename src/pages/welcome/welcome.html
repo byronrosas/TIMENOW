@@ -1,0 +1,23 @@
+<ion-content scroll="false">
+  <div class="splash-bg">    
+<p class="slogan" >
+  {{ 'MENSAJE_BIENVENIDA' | translate}}    
+</p>
+  </div>
+  <div class="splash-info">
+    <div class="splash-logo"></div>
+    <div class="splash-intro">
+      <p class="montserrat" color="dark">{{ 'ANTES_INGRESO' | translate}}</p>
+    </div>
+  </div>
+  <div padding>
+    <button ion-button block (click)="signup()" required>{{ 'SIGNUP' | translate }}</button>
+    <button ion-button block (click)="login()" required>{{ 'LOGIN' | translate }}</button>
+  </div>
+
+</ion-content>
+<ion-footer >
+    <ion-toolbar  color="primary" >
+      <ion-title text-center>COPYRIGHT ©  2018  Byron Rosas | TimeNow Team</ion-title>
+    </ion-toolbar>
+  </ion-footer>

@@ -1,0 +1,301 @@
+<!--
+  Generated template for the ActividadPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+        <ion-navbar>
+
+               <ion-toolbar>
+                       <ion-title>{{'HEADER_ACTIVIDAD' | translate}}</ion-title>
+                       <!-- <button item-right  icon-only margin-left tooltip="Color Izq: Etiqueta de proyecto./\n Color Der:Estado. \n Color Superior:Etiqueta actividad." positionH=left>
+                           <ion-icon name="information-circle"></ion-icon>
+                   </button>                                                     -->
+                </ion-toolbar>
+
+         </ion-navbar>
+
+       </ion-header>
+
+
+       <ion-content padding>
+
+           <div [ngSwitch]="optVista" margin-bottom padding-bottom>
+                   <button (click)="verNots()">
+                           Ver notificaciones
+                       </button>
+                       <button (click)="borrarNot()">
+                              Borrar nots
+                       </button>
+                       <ion-segment [(ngModel)]="toogleTipoSegment" *ngIf="optVista=='newview' && calendario.idcalendario==null"  (ionChange)="updateToogle()" color="danger">
+                            <ion-segment-button value="Proyecto" checked>
+                                    {{'TIPO_UNICO' | translate}} 
+                            </ion-segment-button>
+                            <ion-segment-button value="Comun" >
+                                    {{'TIPO_RECURRENTE' | translate}}
+                            </ion-segment-button>
+                      </ion-segment>
+                      
+
+       <!-- NEW VIEW -->
+        <!-- <ion-item no-padding *ngIf="calendario.idcalendario==null">
+            <ion-label fixed *ngIf="!toogleTipo">
+                <strong>{{'TIPO_UNICO' | translate}}</strong>/{{'TIPO_RECURRENTE' | translate}}
+            </ion-label>
+            <ion-label fixed *ngIf="toogleTipo">
+                <strong>{{'TIPO_RECURRENTE' | translate}}</strong>/{{'TIPO_UNICO' | translate}}
+            </ion-label>
+            
+            <ion-toggle [(ngModel)]="toogleTipo" (ionChange)="updateToogle(toogleTipo)" name="toogleTipo">
+            </ion-toggle>
+        </ion-item> -->
+       
+                      <form (submit)="doSaveCalendario(actividadform)" #actividadform="ngForm" *ngSwitchCase="'newview'">
+                          
+                      <ion-list>  
+                                                  
+                           <!-- <ion-item no-padding *ngIf="calendario.idcalendario!=null && calendario.tipo != 'Comun'">
+                                   <ion-label fixed *ngIf="!toogleTipo">
+                                       <strong>{{'TIPO_UNICO' | translate}}</strong>/{{'TIPO_RECURRENTE' | translate}}
+                                   </ion-label>
+                                   <ion-label fixed *ngIf="toogleTipo">
+                                       <strong>{{'TIPO_RECURRENTE' | translate}}</strong>/{{'TIPO_UNICO' | translate}}
+                                   </ion-label>
+                                   <ion-toggle [(ngModel)]="toogleTipo" (ionChange)="updateToogle(toogleTipo)" name="toogleTipo">
+                                   </ion-toggle>
+                           </ion-item> -->
+                           
+                           <ion-item no-padding *ngIf="calendario.idcalendario!=null && calendario.tipo == 'Comun'">
+                                   {{'ESTA_ES_ACT_REC' | translate}} <ion-icon name="logo-buffer" color="great"></ion-icon>
+                           </ion-item>
+                           
+                           <!-- <ion-item *ngIf="!toogleTipo">
+
+
+
+                           </ion-item> -->
+
+                           <!-- <ion-item *ngIf="toogleTipo"> -->
+
+                                   <!-- <ion-label floating>{{'CONTENIDO' | translate}}</ion-label>
+                                   <ion-select [(ngModel)]="calendario.idactividad" name="idactividad">
+                                       <template>
+                                           <ion-option *ngFor="let actividad of actividadList" [value]="actividad.idactividad">{{actividad.nombre}}</ion-option>
+                                       </template>
+                                   </ion-select> -->
+                           <!-- </ion-item> -->
+                           
+                           
+
+                           
+                           <div *ngIf="calendario.tipo=='Proyecto' || (calendario.tipo=='Comun' && calendario.idcalendario!=null)">
+                               <!-- PROYECTO -->
+                               <ion-item no-padding>
+                                   <ion-label floating>{{'TIEMPO_INICIO' | translate}}</ion-label>
+                                   <ion-datetime class="form-control" displayFormat="MMM DD, YYYY HH:mm" (ionChange)="validatorFn(1)" minuteValues="0,15,30,45" [(ngModel)]="calendario.tiempoinicio"  name="tiempoinicio" #tiempoinicio="ngModel"   required date></ion-datetime>
+                               </ion-item>         
+                               <div *ngIf="tiempoinicio.invalid && (tiempoinicio.dirty || tiempoinicio.touched)">                                    
+                                    <div  class="msnerr" *ngIf="tiempoinicio.errors.required">
+                                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                    </div>                                                                       
+                                    
+                               </div> 
+                               <div  class="msnerr" *ngIf="validatorFechaI">
+                                    {{msnValidarFecha}}
+                                </div>                              
+
+                               <ion-item no-padding>
+                                   <ion-label floating>{{'TIEMPO_FIN' | translate}}</ion-label>
+                                   <ion-datetime class="form-control" displayFormat="MMM DD, YYYY HH:mm"  minuteValues="0,15,30,45" (ionChange)="cambioFechaF(2)" [(ngModel)]="calendario.tiempofin"   name="tiempofin" #tiempofin="ngModel" required></ion-datetime>
+                               </ion-item>
+                               <div *ngIf="tiempofin.invalid && (tiempofin.dirty || tiempofin.touched)">
+                                    <div  class="msnerr" *ngIf="tiempofin.errors.required">
+                                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                    </div>
+                                    
+                               </div>
+                               <div  class="msnerr" *ngIf="validatorFechaF">
+                                    {{msnValidarFecha}}
+                                </div>                                
+                           </div>
+                           <div *ngIf="calendario.tipo=='Comun' && calendario.idcalendario==null">
+                               <!-- COMUN (Repetitivas) -->                             
+                               <div no-padding class="flex-align-inline">
+                                   <ion-item no-padding>
+                                       <ion-label floating>{{'FECHA_INICIO' | translate}}</ion-label>
+                                       <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="FechaInicioR" (ionChange)="validatorFn()" name="FechaInicioR" required #fechainicior="ngModel"></ion-datetime>
+                                       
+                                   </ion-item>
+                                   <div *ngIf="fechainicior.invalid && (fechainicior.dirty || fechainicior.touched)">                                    
+                                        <div  class="msnerr" *ngIf="fechainicior.errors.required">
+                                            {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                        </div>
+                                        <div  class="msnerr" *ngIf="validatorFechaR">
+                                            {{msnValidarFecha}}
+                                        </div>                                   
+                                    </div>
+                                   <ion-item no-padding>
+                                       <ion-label floating>{{'DIAS_REPETIDOS' | translate}}</ion-label>
+                                       <ion-input type="number" step="1" min="1" (ionChange)="validatorFn()"  [(ngModel)]="nDias" required #ndias="ngModel" name="ndias" number></ion-input>
+                                   </ion-item>
+                                   <div *ngIf="ndias.invalid && (ndias.dirty || ndias.touched)">                                    
+                                        <div  class="msnerr" *ngIf="ndias.errors.required">
+                                            {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                        </div>
+                                        <div  class="msnerr" *ngIf="ndias.errors.number">
+                                            {{ 'MSN_INPUT_NUMBER' | translate}}
+                                        </div>                                                        
+                                    </div>
+                               </div>
+
+
+                               <div class="flex-align-inline" no-padding>
+                                       <ion-item no-padding >
+                                               <ion-label floating>{{'TIEMPO_INICIO' | translate}}</ion-label>
+                                               <ion-datetime displayFormat="HH:mm" (ionChange)="validatorFn()" minuteValues="0,15,30,45" [(ngModel)]="horaInicioR" #horainicior="ngModel"  name="horaInicioR" required></ion-datetime>
+                                       </ion-item>
+                                       <div *ngIf="horainicior.invalid && (horainicior.dirty || horainicior.touched)">                                    
+                                            <div  class="msnerr" *ngIf="horainicior.errors.required">
+                                                {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                            </div>
+                                        </div>
+                                       <ion-item no-padding>
+                                           <!-- (ionChange)="cambioFechaF()"  -->
+                                               <ion-label floating>{{'TIEMPO_FIN' | translate}}</ion-label>
+                                               <ion-datetime displayFormat="HH:mm" minuteValues="0,15,30,45" [(ngModel)]="horaFinR" #horafinr="ngModel"   (ionChange)="repetirAct()" name="horaFinR" required></ion-datetime>
+                                       </ion-item>
+                                       <div *ngIf="horafinr.invalid && (horafinr.dirty || horafinr.touched)">                                    
+                                            <div  class="msnerr" *ngIf="horafinr.errors.required">
+                                                {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                            </div>
+                                        </div>
+                               </div>
+
+                           </div>
+
+
+
+                           <div no-padding margin-top class="separador"></div>                           
+                                                 
+                               <ion-item>
+                               
+                                <ion-label floating>{{'PROYECTO' | translate}}</ion-label>
+                                <ion-select [(ngModel)]="calendario.idproyecto" (ionChange)="validatorFn()"  required name="idproyecto" #idproyecto="ngModel" >
+                                    <ion-option *ngFor="let proyecto of proyectoList" [value]="proyecto.idproyecto">{{proyecto.nombre}}</ion-option>
+                                </ion-select>                                                               
+                            </ion-item>
+                            <ion-item>
+                               
+                                    <ion-label floating>{{'CONTENIDO' | translate}}</ion-label>
+                                    <ion-select [(ngModel)]="calendario.idactividad" (ionChange)="validatorFn()" required name="idactividad" #idactividad="ngModel">
+                                            <ion-option *ngFor="let actividad of actividadList" [value]="actividad.idactividad">{{actividad.nombre}}</ion-option>
+                                    </ion-select>                                                     
+                            </ion-item>
+                            
+                            <div *ngIf="(idproyecto.invalid && (idproyecto.dirty || idproyecto.touched)) || (idactividad.invalid && (idactividad.dirty || idactividad.touched))">
+                                 <div  class="msnerr" *ngIf="idproyecto.errors.required || idactividad.errors.required">
+                                     {{ 'MSN_INPUT_VALIDAR' | translate}}
+                                 </div>                                                                                                                   
+                             </div>
+                            <div no-padding>
+                                    <ion-item no-padding>
+                                      <button right type="button" ion-button (click)="gotoPagePlus('ProyectoPage')">+ {{'PROYECTO' | translate}}</button>
+                                      <button left type="button" ion-button (click)="gotoPagePlus('ContentPage')">+ {{'CONTENIDO' | translate}}</button>
+                                    </ion-item>
+                            </div>
+                            <div no-padding margin-top class="separador"></div>
+                           <ion-item no-padding>
+                               <ion-item no-padding>{{'ESTADO_INICIAL' | translate}}: <ion-badge  [ngStyle]="{'background-color':colorListForView[calendario.estado]}">{{calendario.estado | translate}}</ion-badge></ion-item>
+                               <ion-scroll scrollX="true">
+                                   <ion-badge (click)="selectEstado(item)"  *ngFor="let item of colorList"  [ngStyle]="{'background-color':item[item.estado]}">{{item.value}}</ion-badge>
+                               </ion-scroll>
+                           </ion-item>
+
+
+                           <div no-padding margin-top class="separador"></div>
+                           <ion-item no-padding>{{'ESFUERZO_NECESARIO' | translate}}: <ion-badge class="bgAqua" color="primary" >{{calendario.peso}}</ion-badge></ion-item>
+                           <ion-item no-padding>
+                               <ion-range min="0" max="100" (ionChange)="validatorFn()"  [(ngModel)]="calendario.peso" color="secondary" name="peso">
+                                   <ion-label range-left>0</ion-label>
+                                   <ion-label range-right>100%</ion-label>
+                               </ion-range>
+                           </ion-item>
+
+
+
+                        <div padding *ngIf="btnUpdate" >
+                              <button ion-button color="primary" [disabled]="validator!=true" block>{{'BTN_ACTUALIZAR' | translate}}</button>
+                          </div>
+                          <div padding *ngIf="!btnUpdate">
+                              <button ion-button color="primary" [disabled]="validator!=true" block>{{'BTN_GUARDAR' | translate}}</button>
+                          </div>
+                        </ion-list>
+                      </form>
+       <!-- LIST VIEW -->
+                      <ion-list no-padding *ngSwitchCase="'listview'">
+                          <ion-item no-padding>
+                               <ion-searchbar  no-padding  placeholder="{{ 'SEARCH_TITLE' | translate}}" (ionInput)="filterItems($event)"></ion-searchbar>
+                          </ion-item>
+                           <!-- ITEM ACTIVIDAD -->
+                       <ion-item-sliding no-padding  (click)="detail(calendario)" margin-top *ngFor="let calendario of calendarioList; let i = index" [ngStyle]="{'border-bottom':'5px solid '+calendario.actetiqueta}">
+                             <ion-item color="primary" no-padding  class="barra-izq-der-actividad">
+                                 <!-- CONTENIDO DEL ITEM -->
+                                 <!-- style => color de etiqueta de proyecto -->
+                                 <ion-item class="item-indicador" no-padding  item-start [ngStyle]="{'background-color': calendario.proetiqueta}">
+                                   <div class="fecha-desc"  text-center><strong>{{'INICIO' | translate}}</strong></div>
+                                   <div class="fecha-desc"  text-center><strong>{{calendario.fi}}</strong></div>
+                                   <div class="fecha-desc" text-center><strong>{{calendario.anioi}}</strong></div>
+                                   <div class="fecha-desc"  text-center><strong>{{calendario.hi}}</strong></div>
+                                 </ion-item>
+                                 <ion-item class="item-indicador" no-padding  item-end [ngStyle]="{'background-color':  colorListForView[calendario.estado]}">
+                                   <div class="fecha-desc"  text-center><strong>{{'FIN' | translate}}</strong></div>
+                                   <div class="fecha-desc"  text-center><strong>{{calendario.ff}}</strong></div>
+                                   <div class="fecha-desc" text-center><strong>{{calendario.aniof}}</strong></div>
+                                   <div class="fecha-desc"  text-center><strong>{{calendario.hf}}</strong></div>
+                                 </ion-item>
+
+                                 <h6 text-center>{{calendario.actnombre}}
+                                   <ion-icon *ngIf="calendario.tipo=='Comun'" name="logo-buffer" color="great"></ion-icon>
+                                 </h6>
+
+                                 <p text-center>({{calendario.pronombre}})</p>
+                                 <p class="parrafo-descripcion"><strong>{{'ESFUERZO_NECESARIO' | translate}}:</strong> {{calendario.peso}}</p>
+                                 <p class="parrafo-descripcion"><strong>{{'CTP_DESCRIPCION' | translate}}:</strong></p>
+                                 <p>{{calendario.actdescripcion}}</p>
+                                 <!-- style => color de etiqueta de proyecto -->
+                             </ion-item>
+                             <ion-item-options side="left" *ngIf="calendario.tipo=='Comun'">
+                                 <!-- {{calendario | json}} -->
+                               <button type="button" ion-button icon-only (click)="deleteAllRecurrents(calendario,i)">
+                                   <ion-icon name="medical"></ion-icon>
+                               </button>
+                             </ion-item-options>
+                             <ion-item-options side="right" >
+                               <button type="button" ion-button icon-only (click)="update(calendario)">
+                                   <ion-icon name="create"></ion-icon>
+                               </button>
+                               <button type="button" ion-button icon-only (click)="delete(calendario,i)">
+                                   <ion-icon name="remove"></ion-icon>
+                               </button>
+                             </ion-item-options>
+                           </ion-item-sliding>
+                             <ion-item *ngIf="calendarioList.length==0 || calendarioList==null">
+                                   {{'MSN_NO_EXISTEN' | translate }}
+                             </ion-item>
+                       </ion-list>
+           </div>
+           <div no-padding margin-bottom class="separador"></div>
+           <ion-toolbar ion-fixed  border-top no-border-bottom class="segment-view">
+                   <ion-segment  [(ngModel)]="optVista"   color="primary" class="segment-view">
+                           <ion-segment-button value="newview" checked>
+                               <ion-icon name="add"></ion-icon>
+                           </ion-segment-button>
+                           <ion-segment-button value="listview">
+                               <ion-icon name="list"></ion-icon>
+                           </ion-segment-button>
+                   </ion-segment>
+           </ion-toolbar>
+
+       </ion-content>

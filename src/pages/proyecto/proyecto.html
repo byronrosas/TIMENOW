@@ -1,0 +1,143 @@
+<!--
+  Generated template for the ProyectoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'HEADER_PROYECTO' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div [ngSwitch]="optVista" margin-bottom padding-bottom>
+    <!-- NEW VIEW -->
+      <form (submit)="doSaveProyecto(proyectoform)" #proyectoform="ngForm"  *ngSwitchCase="'newview'">  
+          <ion-list>
+      
+              <ion-item no-padding>
+                <ion-label floating>{{'CTP_NOMBRE' | translate}}:</ion-label>
+                <ion-input type="text" [(ngModel)]="proyecto.nombre" #nombre="ngModel" (ionChange)="validatorFn()" name="nombre" required></ion-input>
+              </ion-item>            
+              <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">                                    
+                    <div  class="msnerr" *ngIf="nombre.errors.required">
+                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                    </div>
+                </div>
+              
+              <ion-item no-padding>
+                <ion-label floating>{{'CTP_DESCRIPCION' | translate}}:</ion-label>
+                <ion-textarea [(ngModel)]="proyecto.descripcion" #descripcion="ngModel" name="descripcion" (ionChange)="validatorFn()" required></ion-textarea>
+              </ion-item> 
+              <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">                                    
+                    <div  class="msnerr" *ngIf="descripcion.errors.required">
+                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                    </div>
+              </div>
+              <div no-padding margin-top class="separador"></div>       
+              <ion-item no-padding>
+                  <ion-item no-padding>{{'ETIQUETA' | translate}}: <ion-badge class="bgAqua" [ngStyle]="{'background-color':proyecto.etiqueta}">{{proyecto.etiqueta}}</ion-badge></ion-item>                    
+                  <ion-scroll scrollX="true">                  
+                      <ion-badge (click)="selectEtiqueta(color)" *ngFor="let color of colorList"  [ngStyle]="{'background-color':color}" >{{color}}</ion-badge>                                         
+                  </ion-scroll>                    
+              </ion-item>
+              <div no-padding margin-top class="separador"></div>       
+              <!-- <ion-item>
+                <ion-scroll scrollX="true">                  
+                  <button type="button" ion-button (click)="selectEtiqueta(color)" *ngFor="let color of colorList" [value]="color" [ngStyle]="{'background-color':color}">{{color}}</button>                                         
+                </ion-scroll>
+              </ion-item>                                                     -->
+              <!-- <ion-item>Etiqueta seleccionada:<ion-badge class="bgAqua" [ngStyle]="{'background-color':proyecto.etiqueta}">{{proyecto.etiqueta}}</ion-badge></ion-item>                         -->
+                                          
+              <ion-item no-padding>{{'PRIORIDAD' | translate}}: <ion-badge class="bgAqua" color="primary">{{proyecto.prioridad}}</ion-badge></ion-item>          
+              <ion-item no-padding>              
+                  <ion-range min="0" max="5"  [(ngModel)]="proyecto.prioridad" color="secondary" name="prioridad"  (ionChange)="validatorFn()">
+                      <ion-label range-left>0({{'MENOR' | translate}})</ion-label>
+                      <ion-label range-right>5({{'MAYOR' | translate}})</ion-label>
+                  </ion-range>                    
+              </ion-item>
+
+
+              <!-- <ion-item><ion-badge class="bgAqua" color="primary">{{proyecto.prioridad}}</ion-badge></ion-item>
+              <ion-item>                
+                  <ion-range min="0" max="5" [(ngModel)]="proyecto.prioridad" color="secondary" name="prioridad">
+                    <ion-label range-left>0(Menor)</ion-label>
+                    <ion-label range-right>5(Mayor)</ion-label>
+                  </ion-range>
+              </ion-item> -->              
+              <ion-item no-padding>                
+                    <ion-label>{{'CATEGORIA' | translate}}:</ion-label>
+                    <ion-select item-left [(ngModel)]="proyecto.idcategoria" name="idcategoria" #categoria="ngModel" required (ionChange)="validatorFn()">
+                        <ion-option *ngFor="let categoria of categoriaList" [value]="categoria.idcategoria">{{categoria.nombre}}</ion-option>                     
+                    </ion-select>
+                    
+                    <button ion-button type="button" item-right (click)="gotoPagePlus('CategoriaPage')" >+ {{'CATEGORIA' | translate}}</button>                                                                     
+                
+              </ion-item>  
+               <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
+                    <div  class="msnerr" *ngIf="categoria.errors.required || categoria.errors.required">
+                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                    </div>                                                                                                                   
+                </div>            
+                <div padding *ngIf="btnUpdate" >
+                    <button ion-button color="primary" block [disabled]="validator!=true">{{'BTN_ACTUALIZAR' | translate}}</button>
+                </div>
+                <div padding *ngIf="!btnUpdate">
+                    <button ion-button color="primary" block [disabled]="validator!=true">{{'BTN_GUARDAR' | translate}}</button>
+                </div>
+            </ion-list>
+
+            
+      </form>
+
+    <!-- LIST VIEW -->
+      <ion-list *ngSwitchCase="'listview'"> 
+          <ion-item no-padding>
+                    <ion-searchbar  no-padding  placeholder="{{ 'SEARCH_TITLE' | translate}}" (ionInput)="filterItems($event)"></ion-searchbar>                                    
+          </ion-item> 
+          <ion-item-sliding (click)="detail(proyecto)" margin-top *ngFor="let proyecto of proyectoList;let i = index">      
+                  <ion-item color="primary" no-padding  class="barra-izq-proyecto" >
+                      <!-- CONTENIDO DEL ITEM -->
+                      <!-- style => color de etiqueta de proyecto -->
+                      <ion-item class="item-indicador" no-margin item-start [ngStyle]="{'background': proyecto.etiqueta}">
+                        <!-- Prioridad del proyecto -->
+                        <h1 text-center>{{proyecto.prioridad}}</h1>
+                      </ion-item>
+                      <h6>{{ proyecto.nombre }}</h6>
+                      
+                      <p class="parrafo-descripcion"><strong>{{'CTP_DESCRIPCION' | translate}}:</strong> </p>
+                      <p>{{proyecto.descripcion}}</p>
+                      <p class="parrafo-descripcion"><strong>{{'CATEGORIA' | translate}}:</strong> {{proyecto.catnombre}}</p>
+                  </ion-item>
+                  <ion-item-options side="right" >
+                    <button type="button" ion-button icon-only (click)="update(proyecto)"  >
+                        <ion-icon name="create"></ion-icon>
+                    </button>
+                    <button type="button" ion-button icon-only (click)="delete(proyecto,i)"  >
+                        <ion-icon name="remove"></ion-icon>
+                    </button>
+                  </ion-item-options>  
+          </ion-item-sliding>             
+          <ion-item *ngIf="proyectoList.length==0 || proyectoList==null">
+            {{'MSN_NO_EXISTEN' | translate }}
+          </ion-item>
+          
+      </ion-list>
+    </div>
+    <div no-padding margin-bottom class="separador"></div>       
+    <ion-toolbar ion-fixed  border-top no-border-bottom class="segment-view">
+            <ion-segment  [(ngModel)]="optVista"   color="primary" class="segment-view">
+                    <ion-segment-button value="newview" checked>
+                        <ion-icon name="add"></ion-icon>
+                    </ion-segment-button>
+                    <ion-segment-button value="listview">
+                        <ion-icon name="list"></ion-icon>
+                    </ion-segment-button>
+            </ion-segment>      
+    </ion-toolbar>  
+</ion-content>

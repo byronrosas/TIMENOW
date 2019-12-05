@@ -1,0 +1,183 @@
+{
+  "NAME": "Nombre",
+  "PASSWORD": "Contraseña",
+  "EMAIL": "Email",
+  "LOGIN": "Iniciar sesión",
+  "SIGNUP": "Registrarse",
+
+  "TAB1_TITLE": "Items",
+  "TAB2_TITLE": "Buscar",
+  "TAB3_TITLE": "Ajustes",
+
+  "MAP_TITLE": "Mapa",
+
+  "TUTORIAL_SLIDE1_TITLE": "Bienvenido/a al Ionic Super Starter",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "El <b>Ionic Super Starter</b> es un starter de Ionic completo con muchas páginas preconstruidas y mejores prácticas.",
+
+  "TUTORIAL_SLIDE2_TITLE": "Cómo usar el Super Starter",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Monta los varios tipos de página que quieras y quita los que no. Hemos incluido muchas estructuras de página comunes en apps móviles, como páginas de inicio de sesión y registro, pestañas, y esta página de tutorial.",
+
+  "TUTORIAL_SLIDE3_TITLE": "Empezando",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "¿Necesitas ayuda? Échale un vistazo al README del Super Starter para ver el tutorial completo.",
+
+  "SETTINGS_TITLE": "Ajustes",
+  "SETTINGS_OPTION1": "Opción 1",
+  "SETTINGS_OPTION2": "Opción 2",
+  "SETTINGS_OPTION3": "Opción 3",
+  "SETTINGS_OPTION4": "Opción 4",
+
+  "SETTINGS_PAGE_PROFILE": "Editar Perfil",
+
+  "WELCOME_TITLE": "Bienvenido/a",
+
+  "LOGIN_TITLE": "Iniciar sesión",
+  "LOGIN_ERROR": "No se ha podido iniciar sesión. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
+  "LOGIN_BUTTON": "Iniciar sesión",
+  "SIGNUP_TITLE": "Registro",
+  "SIGNUP_ERROR": "No se ha podido crear la cuenta. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
+  "SIGNUP_BUTTON": "Registrarse",
+
+  "LIST_MASTER_TITLE": "Items",
+
+  "ITEM_CREATE_TITLE": "Nuevo Item",
+  "ITEM_CREATE_CHOOSE_IMAGE": "Añadir Imagen",
+
+  "CARDS_TITLE": "Social",
+
+  "SEARCH_TITLE": "Buscar",
+  
+  
+  "ESPANOL":"Español",
+  "INGLES":"Ingles",
+  "MI_CUENTA":"Mi cuenta",
+  "CAMBIAR_A_PRO":"Cambiar a Pro",
+  "IDIOMA":  "Idioma",
+  "CERRAR_SESION":"Cerrar Sesión",
+
+  "BTN_CANCELAR":"Cancelar",
+  "BTN_ACEPTAR":"Aceptar",
+
+
+  "HEADER_PROYECTO":"PROYECTO",  
+  "PROYECTO":"Proyecto",
+  "PROYECTOS":"Proyectos",
+  "HEADER_CATEGORIA":"CATEGORIA",
+  "CATEGORIA":"Categoría",
+  "HEADER_CONTENIDO":"CONTENIDO",
+  "CONTENIDO":"Contenido",
+  "HEADER_AGENDA":"AGENDA",
+  "AGENDA":"Agenda",
+  "HEADER_ACTIVIDAD":"ACTIVIDAD",
+  "ACTIVIDAD":"Actividad",
+  "HEADER_HORARIO":"HORARIO",
+  "HORARIO":"Horario",
+    
+  "TODAY":"HOY",
+  "TOMORROW":"MAÑANA",
+  "TWO_DAYS":"2 DÍAS DESPUÉS",
+  "THREE_DAYS":"3 DÍAS DESPUÉS",  
+
+  "BTN_GUARDAR_PROYECTO":"Guardar Proyecto",  
+  "BTN_GUARDAR_CATEGORIA":"Guardar Categoría",
+  "BTN_GUARDAR_CONTENIDO":"Guardar Contenido",
+  "BTN_GUARDAR_AGENDA":"Guardar Agenda",
+  "BTN_GUARDAR_ACTIVIDAD":"Guardar Actividad",
+  "BTN_GUARDAR_HORARIO":"Guardar Horario",
+
+  "BTN_GUARDAR":"Guardar",
+  "BTN_ACTUALIZAR":"Actualizar",
+
+  "CTP_NOMBRE":"Nombre",
+  "CTP_DESCRIPCION":"Descripción",
+  "ETIQUETA":"Etiqueta",
+  "PRIORIDAD":"Prioridad",
+  "MENOR":"Menor",
+  "MAYOR":"Mayor",
+  "TIEMPO_INICIO":"Tiempo Inicial",
+  "TIEMPO_FIN":"Tiempo Final",
+  "ESTADO_INICIAL":"Estado inicial",
+  "PROYECTO_CONTENIDO":"Proyecto-Contenido",
+  "ESFUERZO_NECESARIO":"Esfuerzo",  
+  "INICIO":"Inicio",
+  "FIN":"Fin",
+
+
+  "noinicia":"No inicia",
+  "enprogreso":"En Progreso",
+  "pendiente":"Pendiente",
+  "completada":"Completado",
+  "cancelada":"Cancelado",
+
+  "BTN_ACTUALIZAR_PROYECTO":"Actualizar Proyecto",  
+  "BTN_ACTUALIZAR_CATEGORIA":"Actualizar Categoría",
+  "BTN_ACTUALIZAR_CONTENIDO":"Actualizar Contenido",
+  "BTN_ACTUALIZAR_AGENDA":"Actualizar Agenda",
+  "BTN_ACTUALIZAR_ACTIVIDAD":"Actualizar Actividad",
+  "BTN_ACTUALIZAR_HORARIO":"Actualizar Horario",
+  
+  "MENSAJE_BIENVENIDA":"Una forma rápida y eficaz de optimizar tu tiempo.",
+  "ANTES_INGRESO":"Por favor ingresa o regístrate, es necesario para mantener segura tu información.",
+  "BTN_REGISTRARSE":"Registrarse",
+  "BTN_INICIAR_SESION":"Iniciar Sesión",
+  "BTN_CONTINUAR":"Continuar",
+  "PLH_USUARIO":"Usuario",
+  
+  
+  "PLH_EMAIL":"Email",
+  "PLH_CONTRASENIA":"Contraseña",
+  "BTN_OLVIDASTE_PW":"¿Olvidaste tu contraseña?",
+
+  "ALERT_REC_PW_TITLE":"Recuperar Contraseña",
+  "ALERT_REC_PW_CONTENT":"Un mensaje con tu contraseña, será enviado a este correo.",
+
+  "MSN_NO_EXISTEN":"No existen items creados.",
+  "ELEMENTOS":"elementos",
+  "TIPO_UNICO":"Único",
+  "TIPO_RECURRENTE": "Recurrente",
+  "FECHA_INICIO":"Fecha de inicio",
+  "FECHA_FIN":"Fecha fin",
+  "HORA_INICIO":"Hora inicio",
+  "HORA_FIN":"Hora Fin",
+  "DIAS_REPETIDOS":"# Días",
+
+
+
+  "ERROR_MSN":"Lo sentimos ha ocurrido un error, intentalo más tarde.",
+  "ESTADO_ACT_MSN":"El estado de una actividad ha sido cambiado ha:",
+  "ERROR_LIST_MSN":"Error al listar elementos.",
+  
+  "SUG_ELIMINAR_MSN":"¿Desea eliminar este elemento de forma permanente?",
+  
+  "BTN_ELIMINAR":"Eliminar",
+  "ELIMINAR":"Eliminado",
+  "ELIMINAR_MSN":"El elemento se ha eliminado con éxito.",
+  "ACTUALIZAR_MSN":"El elemento se ha actualizado con éxito.",
+  "GUARDAR_MSN":"El elemento se ha guardado con éxito.",
+  "ERROR":"Error",
+  "ERROR_SESION_MSN":"Intente cerrar sesión más tarde.",
+
+  "DETALLE":"Detalle",
+  "EXISTENCIA_ACT_MSN":"Existe otra actividad ocupando este rango de tiempo.",
+  "FECHA_VALIDACION_MSN":"Verifique que las fechas sean mayor a la fecha actual, y que la fecha final sea mayor a la inicial.",
+  
+  "SE_HAN_ELIMINADO_MSN":"Se han eliminado",
+  "ACT_RECURRENTES_MSN":"actividades similares-recurrentes.",
+  "ELIMINAR_RECURRENTES":"Eliminar Recurrentes",
+  "ELIMINAR_RECURRENCIAS_MSN":"¡Eliminar Recurrentes!",
+  "ELIMINAR_RECURRENTES_MSN":"Al eliminar esta actividad, se eliminan todas las actividades similares en: Hora inicio, Hora fin, nombre, etc, que sean recurrentes.",
+  "ADVERTENCIA_NOT_PROGRESS":"No se puede eliminar,este elemento contiene contiene items enlazados. Se eliminará todo el progreso.",
+  "ADVERTENCIA":"Advertencia",
+  "CARGANDO":"Cargando...",
+  "ESTA_ES_ACT_REC":"Esta es una actividad recurrente",
+  "TIME":"Tiempo",
+  "CREAR_NOTA_RAPIDA_MSN":"Crea una nota rápida",
+  "EN_ESTE_MOMENTO_I_MSN":"(En este momento inicia)",
+  "EN_ESTE_MOMENTO_F_MSN":"(En este momento finaliza)",
+  "PROGRESS_PROYECTO_MSN":"Progreso del proyecto:",
+  "MSN_INPUT_VALIDAR":"Este campo es requerido.",
+  "MSN_INPUT_VERIFICAR":"Verificar las fechas.",  
+  "MSN_INPUT_NUMBER":"Este campo acepta solo números.",
+  "MSN_INPUT_VERIFICAR_MAYOR_ACTUAL":"Verificar que la fecha sea mayor a la fecha actual.",
+  "MSN_INPUT_VERIFICAR_MAYOR_INICIO":"Verificar que la fecha sea mayor a la fecha de inicio."
+}
+

@@ -1,0 +1,91 @@
+<!--
+  Generated template for the CategoriaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'HEADER_CATEGORIA' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>  
+  <div [ngSwitch]="optVista">
+      <!-- NEW VIEW -->
+    <form (submit)="doSaveCategoria(categoriaform)" #categoriaform="ngForm" *ngSwitchCase="'newview'">  
+      <ion-list>
+  
+            <ion-item no-padding>
+              <ion-label floating>{{'CTP_NOMBRE' | translate}}:</ion-label>
+              <ion-input type="text" [(ngModel)]="categoria.nombre" #nombre="ngModel" (ionChange)="validatorFn()" name="nombre" required ngControl="nombre"></ion-input>
+            </ion-item>
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">                                    
+                    <div  class="msnerr" *ngIf="nombre.errors.required">
+                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                    </div>
+            </div>
+          
+            <ion-item no-padding>          
+              <ion-label floating>{{'CTP_DESCRIPCION' | translate}}:</ion-label>
+              <ion-textarea [(ngModel)]="categoria.descripcion" name="descripcion" #descripcion="ngModel" (ionChange)="validatorFn()" gControl="description" required></ion-textarea>
+            </ion-item>
+            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">                                    
+                    <div  class="msnerr" *ngIf="descripcion.errors.required">
+                        {{ 'MSN_INPUT_VALIDAR' | translate}}
+                    </div>
+            </div>
+            <div padding *ngIf="btnUpdate" >
+                <button ion-button color="primary" block [disabled]="validator!=true">{{'BTN_ACTUALIZAR' | translate}}</button>
+            </div>
+            <div padding *ngIf="!btnUpdate">
+                <button ion-button color="primary" block [disabled]="validator!=true">{{'BTN_GUARDAR' | translate}}</button>
+            </div>
+      </ion-list>
+  
+      
+    </form>
+    <!-- LIST VIEW -->
+    <ion-list *ngSwitchCase="'listview'">              
+        <ion-item no-padding>
+            <ion-searchbar  no-padding  placeholder="{{ 'SEARCH_TITLE' | translate}}" (ionInput)="filterItems($event)"></ion-searchbar>                                    
+        </ion-item> 
+        <!-- ITEM CATEGORIA -->
+        <ion-item-sliding class="slide-border-categoria" *ngFor="let categoria of categoriaList; let i=index" margin-top (click)="detail(categoria)">      
+            <ion-item color="primary" padding-left   class="barra-izq-categoria">
+                <!-- CONTENIDO DEL ITEM -->                        
+                <h6>{{categoria.nombre}}</h6>
+                
+                <p class="parrafo-descripcion"><strong>{{'CTP_DESCRIPCION' | translate}}:</strong></p>            
+                <p class="parrafo-descripcion">{{categoria.descripcion}}</p>            
+  
+            </ion-item>
+            <ion-item-options side="right" >
+              <button type="button" ion-button icon-only (click)="update(categoria)">
+                  <ion-icon name="create"></ion-icon>
+              </button>
+              <button type="button" ion-button icon-only (click)="delete(categoria,i)">
+                  <ion-icon name="remove"></ion-icon>
+              </button>
+            </ion-item-options>  
+        </ion-item-sliding>
+        <ion-item *ngIf="categoriaList.length==0 || categoriaList==null">
+                {{'MSN_NO_EXISTEN' | translate }}
+        </ion-item>
+    </ion-list>    
+  </div>
+  <div no-padding margin-bottom class="separador"></div>       
+  <ion-toolbar ion-fixed  border-top no-border-bottom class="segment-view">
+          <ion-segment  [(ngModel)]="optVista"   color="primary" class="segment-view">
+                  <ion-segment-button value="newview" checked>
+                      <ion-icon name="add"></ion-icon>
+                  </ion-segment-button>
+                  <ion-segment-button value="listview">
+                      <ion-icon name="list"></ion-icon>
+                  </ion-segment-button>
+          </ion-segment>      
+  </ion-toolbar> 
+</ion-content>
