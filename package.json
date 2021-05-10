@@ -54,7 +54,7 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionic-tooltips": "^2.0.1",
     "ionicons": "3.0.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "moment": "^2.22.2",
     "ng2-validation": "^4.2.0",
     "rxjs": "5.5.11",
